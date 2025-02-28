@@ -15,8 +15,6 @@ body {
     flex-direction: column; /* Para mantener la estructura flexible */
 }
 
-
-
 main {
     flex: 1; /* Hace que el contenido principal empuje el footer hacia abajo */
     padding: 20px;
@@ -72,8 +70,6 @@ main h1 {
     height: 24px;
 }
 
-
-
 /* Catálogo */
 .catalog {
     display: grid;
@@ -91,6 +87,7 @@ main h1 {
     text-align: center;
     transition: transform 0.2s ease;
     width: 70%;
+    margin: 0 auto; /* Center the product cards */
 }
 
 .product:hover {
@@ -129,7 +126,6 @@ main h1 {
 .product .btn:hover {
     background-color: #287ac6;
 }
-
 
 .fas {
     margin-right: 10px;

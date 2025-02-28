@@ -1,4 +1,4 @@
- <!DOCTYPE html>
+<!DOCTYPE html>
 <html lang="es">
 <head>
     <meta charset="UTF-8">
@@ -7,22 +7,38 @@
     <link rel="stylesheet" href="centro.css">
     <link rel="stylesheet" href="cabecera.css">
     <link rel="stylesheet" href="pie.css">
-    <link rel="icon" href="fotos/imagen.ico" type="image/x-icon">
-    <link rel="stylesheet" href="justificado.css">
+    <link rel="stylesheet" href="carrito.css">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0-beta3/css/all.min.css">
 </head>
 <body>
     <!-- Encabezado -->
     <header>
         <div class="logo-container">
-            <a href="proyecto.html"><img src="fotos/foto.png" alt="Logo DAW SNKRS" class="logo-image" > </a> 
+            <a href="proyecto.html"><img src="fotos/foto.png" alt="Logo DAW SNKRS" class="logo-image"></a>
             <div class="logo-text">DAW SNKRS</div>
         </div>
         <nav>
             <a href="proyecto.html">Inicio</a>
-            <a href="catalogo.html">Zapatillas</a>
-            <a href="contacto.html">Contacto</a>
-            <a href="legal.html" class="active">Apartado Legal</a>
+            <a href="zapatillas.html">Tienda</a>
+            <a href="sobre_nosotros.html">Sobre nosotros</a>
+            <a href="novedades.html">Novedades</a>
+            <a href="deportes.html">Deportes</a>
+            <a href="outlet.html">Outlet</a>
         </nav>
+        <div class="cart">
+            <img src="fotos/cart-icon.png" alt="Carrito" class="cart-icon">
+            <div class="cart-count">0</div>
+            <div class="cart-dropdown">
+                <ul>
+                    <li class="cart-item">
+                        <p>Producto 1</p>
+                        <button>Eliminar</button>
+                    </li>
+                </ul>
+                <div class="cart-total">Total: $0.00</div>
+                <button class="checkout-btn">Pagar</button>
+            </div>
+        </div>
     </header>
 
     <!-- Contenido principal -->
@@ -31,7 +47,7 @@
             <h1>Apartado Legal de DAW SNKRS (2024)</h1>
             <article>
                 <h2>1. Propiedad Intelectual</h2>
-                <p>Todos los diseños y productos de <b style="color:blue">DAW SNKRS</b> son originales y están protegidos por la Ley de Propiedad Intelectual (<b>Real Decreto Legislativo 1/1996, de 12 de abril</b>).</p>
+                <p>Todos los diseños y productos de <b class="highlight">DAW SNKRS</b> son originales y están protegidos por la Ley de Propiedad Intelectual (<b>Real Decreto Legislativo 1/1996, de 12 de abril</b>).</p>
                 <p>Cualquier uso no autorizado de marcas, logotipos o diseños de terceros está estrictamente prohibido y será perseguido legalmente.</p>
             </article>
 
@@ -49,17 +65,14 @@
 
             <article>
                 <h2>4. Responsabilidad</h2>
-                <p><b style="color:blue">DAW SNKRS</b> no se hace responsable de los daños directos o indirectos que puedan surgir del uso de nuestros productos o servicios.</p>
+                <p><b class="highlight">DAW SNKRS</b> no se hace responsable de los daños directos o indirectos que puedan surgir del uso de nuestros productos o servicios.</p>
                 <p>En caso de que se produzcan errores en la información proporcionada, nos comprometemos a corregirlos a la mayor brevedad posible.</p>
             </article>
 
             <article>
                 <h2>5. Contacto para Consultas Legales</h2>
                 <p>Para cualquier consulta relacionada con la propiedad intelectual, protección de datos o condiciones de uso, los interesados pueden ponerse en contacto con nuestro departamento legal a través de:</p>
-                
-                    Correo: <b>legal@dawsnkrs.com</b><br>
-                    Teléfono: <b>+34 123 456 789</b>
-                
+                <p>Correo: <b>legal@dawsnkrs.com</b><br>Teléfono: <b>+34 123 456 789</b></p>
             </article>
         </section>
 
@@ -77,18 +90,18 @@
 
             <article>
                 <h2>3. ¿Quién recopila y usa sus datos personales?</h2>
-                <p><b style="color:blue">DAW SNKRS</b> actúa como "<b>controlador de datos</b>". También trabajamos con socios que actúan como "<b>encargados del tratamiento</b>".</p>
+                <p><b class="highlight">DAW SNKRS</b> actúa como "<b>controlador de datos</b>". También trabajamos con socios que actúan como "<b>encargados del tratamiento</b>".</p>
             </article>
 
             <article>
                 <h2>4. Finalidades de la recopilación de datos</h2>
                 <p>Utilizamos sus datos para:</p>
-                
-                   <p> Gestionar nuestra relación con usted.</p>
-                    <p>Ofrecer un servicio personalizado.</p>
-                    <p>Enviar contenido promocional adaptado a sus intereses.</p>
-                    <p>Prevenir fraudes y cumplir con obligaciones legales.</p>
-                
+                <ul>
+                    <li>Gestionar nuestra relación con usted.</li>
+                    <li>Ofrecer un servicio personalizado.</li>
+                    <li>Enviar contenido promocional adaptado a sus intereses.</li>
+                    <li>Prevenir fraudes y cumplir con obligaciones legales.</li>
+                </ul>
             </article>
 
             <article>
@@ -96,12 +109,10 @@
                 <p>Implementamos medidas técnicas y organizativas para proteger sus datos contra accesos no autorizados, pérdida o uso indebido.</p>
             </article>
         </section>
-        <br>
-        <br>
     </main>
 
     <!-- Pie de página -->
-   <footer>
+    <footer>
         <div class="footer-container">
             <div class="footer-section">
                 <h4>Información del contacto</h4>
@@ -113,9 +124,9 @@
             <div class="footer-section">
                 <h4>Enlaces a páginas clave</h4>
                 <a href="proyecto.html">Inicio</a>
-                <a href="#">Zapatillas</a>
-                <a href="#">Contacto</a>
-                <a href="#">Sobre nosotros</a>
+                <a href="zapatillas.html">Tienda</a>
+                <a href="contacto.html">Contacto</a>
+                <a href="sobre_nosotros.html">Sobre nosotros</a>
             </div>
             <div class="footer-section">
                 <h4>Términos legales</h4>
@@ -126,10 +137,10 @@
             <div class="footer-section">
                 <h4>Redes sociales</h4>
                 <div class="social-icons">
-                    <a href="www.facebook.com"><img src="fotos/facebook.png" alt="Facebook"></a>
-                    <a href="www.instagram.com"><img src="fotos/instagram.png" alt="Instagram"></a>
-                    <a href="www.twitter.com"><img src="fotos/twitter.png" alt="Twitter"></a>
-                    <a href="www.youtube.com"><img src="fotos/youtube.png" alt="YouTube"></a>
+                    <a href="https://www.facebook.com"><img src="fotos/facebook.png" alt="Facebook"></a>
+                    <a href="https://www.instagram.com"><img src="fotos/instagram.png" alt="Instagram"></a>
+                    <a href="https://www.twitter.com"><img src="fotos/twitter.png" alt="Twitter"></a>
+                    <a href="https://www.youtube.com"><img src="fotos/youtube.png" alt="YouTube"></a>
                 </div>
             </div>
         </div>
