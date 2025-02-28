@@ -1,0 +1,19 @@
+* Aplica la justificación a todos los párrafos dentro del main */
+main p {
+    text-align: justify;
+}
+
+/* Opcional: puedes justificar otros elementos si es necesario */
+main article {
+    text-align: justify;
+}
+
+/* Si quieres ajustar los encabezados o secciones */
+main h1, main h2 {
+    text-align: center; /* Puedes mantener los encabezados centrados si lo prefieres */
+}
+
+/* Espaciado adicional entre párrafos (opcional) */
+main p {
+    margin-bottom: 1em; /* Añade espacio entre párrafos */
+}
