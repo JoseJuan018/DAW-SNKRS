@@ -11,7 +11,6 @@
     padding-top: 10px;
     font-size: 12px;
     color: #777;
-    text-align: center;
 }
 
 /* Footer fijo */
@@ -34,7 +33,7 @@ footer {
     gap: 20px;
     max-width: 1200px;
     margin: 0 auto;
-    padding: 40px 20px; /* Increased padding for better spacing */
+    padding: 20px;
 }
 
 .footer-section {
@@ -46,6 +45,7 @@ footer {
     font-size: 16px;
     margin-bottom: 15px;
     text-transform: uppercase;
+    color: #F7F771; /* Amarillo */
 }
 
 .footer-section p,

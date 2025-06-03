@@ -1,0 +1,194 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>DAW SNKRS - Inicio</title>
+    <link rel="stylesheet" href="centro.css">
+    <link rel="stylesheet" href="cabecera.css">
+    <link rel="stylesheet" href="pie.css">
+    <link rel="icon" href="fotos/imagen.ico" type="image/x-icon">
+    <link href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0-beta3/css/all.min.css" rel="stylesheet">
+    <style>
+        /* Estilos CSS específicos para el video y su contenedor en proyecto.html */
+        .video-hero-section {
+            position: relative;
+            width: 100%;
+            height: 70vh; /* Ajusta la altura del video hero */
+            overflow: hidden;
+            display: flex;
+            flex-direction: column;
+            justify-content: center;
+            align-items: center;
+            text-align: center;
+            color: white; /* Color del texto sobre el video */
+            margin-bottom: 40px; /* Espacio después del video */
+        }
+
+        .video-hero-section video {
+            position: absolute;
+            top: 50%;
+            left: 50%;
+            min-width: 100%;
+            min-height: 100%;
+            width: auto;
+            height: auto;
+            z-index: -1; /* Envía el video al fondo */
+            transform: translate(-50%, -50%);
+            object-fit: cover; /* Cubre el área manteniendo la relación de aspecto */
+        }
+
+        .video-hero-section::after { /* Overlay oscuro para mejorar la legibilidad del texto */
+            content: '';
+            position: absolute;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            background-color: rgba(0, 0, 0, 0.5); /* Oscurece el video ligeramente */
+            z-index: -1;
+        }
+
+        .video-hero-content {
+            z-index: 1; /* Asegura que el contenido esté sobre el video */
+            padding: 20px;
+            max-width: 800px;
+        }
+
+        .video-hero-content h1 {
+            font-size: 3.5em;
+            margin-bottom: 15px;
+            color: white;
+            text-shadow: 2px 2px 4px rgba(0,0,0,0.7); /* Sombra para mejor legibilidad */
+        }
+
+        .video-hero-content p {
+            font-size: 1.3em;
+            margin-bottom: 25px;
+            color: white;
+            text-shadow: 1px 1px 3px rgba(0,0,0,0.7);
+        }
+
+        .video-hero-content .btn-hero {
+            background-color: #32A8FF;
+            color: #fff;
+            padding: 12px 25px;
+            border: none;
+            border-radius: 5px;
+            font-size: 1.1em;
+            font-weight: 600;
+            text-decoration: none;
+            transition: background-color 0.3s ease;
+        }
+
+        .video-hero-content .btn-hero:hover {
+            background-color: #287ac6;
+        }
+
+        .featured-products {
+            padding: 40px 0;
+            text-align: center;
+        }
+
+        .featured-products h2 {
+            font-size: 2.2em;
+            color: #1a1a1a;
+            margin-bottom: 30px;
+        }
+
+        /* Responsive adjustments */
+        @media (max-width: 768px) {
+            .video-hero-section {
+                height: 50vh; /* Menos altura en móviles */
+            }
+            .video-hero-content h1 {
+                font-size: 2.5em;
+            }
+            .video-hero-content p {
+                font-size: 1em;
+            }
+            .product-grid {
+                grid-template-columns: 1fr; /* Una columna en pantallas pequeñas */
+                padding: 0 10px; /* Ajusta el padding en móvil */
+            }
+        }
+    </style>
+</head>
+<body>
+    <header>
+        <div style="float: right; margin: 10px;">
+            <a href="proyecto.html" style="color: white; margin-right: 5px; text-decoration: none;">ES</a> |
+            <a href="proyecto_en.html" style="color: white; margin-left: 5px; text-decoration: none;">EN</a>
+        </div>
+        <div class="logo-container">
+            <a href="proyecto_en.html"><img src="fotos/foto.png" alt="DAW SNKRS Logo" class="logo-image"></a>
+            <div class="logo-text">DAW SNKRS</div>
+        </div>
+        <nav>
+            <a href="proyecto_en.html">Home</a>
+            <a href="zapatillas_en.html">Shop</a>
+            <a href="sobre_nosotros_en.html">About Us</a>
+            <a href="novedades_en.html">News</a>
+            <a href="deportes_en.html">Sports</a>
+            <a href="outlet_en.html">Outlet</a>
+            <a href="contacto_en.html">Contact</a>
+            <a href="terminos_en.html">Terms and Conditions</a>
+        </nav>
+        <div class="cart">
+            <i class="fas fa-shopping-cart cart-icon"></i>
+            <span class="cart-count">0</span>
+            <div class="cart-dropdown" id="cartDropdown">
+                <ul class="cart-items" id="cartItems"></ul>
+                <div class="cart-footer">
+                    <p>Total: <span id="cartTotal">0.00€</span></p>
+                    <button class="btn-clear-cart" id="clearCart">Empty Cart</button>
+                    <button class="checkout-btn" id="checkoutBtn">Checkout</button>
+                </div>
+            </div>
+        </div>
+    </header>
+    <main>
+    <div class="video-hero-section">
+        <video autoplay muted loop playsinline>
+            <source src="fotos/haz_un_video_de_un_acuerdo_emp.mp4" type="video/mp4">
+        </video>
+        <div class="video-hero-content">
+            <h1>Welcome to DAW SNKRS</h1>
+            <p>Discover the latest trends and timeless classics.</p>
+            <a href="zapatillas_en.html" class="btn-hero">Explore Store</a>
+        </div>
+    </div>
+        </main>
+
+        <footer>
+            <div class="footer-container">
+                <div class="footer-section">
+                    <h4>Contact Information</h4>
+                    <p>Email: contacto@dawsnkrs.com</p>
+                    <p>Phone: +34 123 456 789</p>
+                    <p>Opening Hours:</p>
+                    <p>10:00h - 18:00h (Monday to Friday)</p>
+                </div>
+                <div class="footer-section">
+                    <h4>Legal Terms</h4>
+                    <a href="#">Privacy Policy</a>
+                    <a href="terminos_en.html">Terms and Conditions</a>
+                    <a href="#">Cookie Policy</a>
+                </div>
+                <div class="footer-section">
+                    <h4>Social Media</h4>
+                    <div class="social-icons">
+                        <a href="https://www.facebook.com/"><img src="fotos/facebook.png" alt="Facebook"></a>
+                        <a href="https://www.instagram.com/"><img src="fotos/instagram.png" alt="Instagram"></a>
+                        <a href="https://www.twitter.com/"><img src="fotos/twitter.png" alt="Twitter"></a>
+                        <a href="https://www.youtube.com/"><img src="fotos/youtube.png" alt="YouTube"></a>
+                    </div>
+                </div>
+            </div>
+            <div class="footer-bottom">
+                <p>© DAW SNKRS. All rights reserved.</p>
+            </div>
+        </footer>
+        <script src="cart.js"></script>
+</body>
+</html>

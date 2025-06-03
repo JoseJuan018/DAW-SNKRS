@@ -12,6 +12,10 @@
 </head>
 <body>
     <header>
+        <div style="float: right; margin: 10px;">
+            <a href="hombre.html" style="color: white; margin-right: 5px; text-decoration: none;">ES</a> |
+            <a href="hombre_en.html" style="color: white; margin-left: 5px; text-decoration: none;">EN</a>
+        </div>
         <div class="logo-container">
             <a href="proyecto.html"><img src="fotos/foto.png" alt="Logo DAW SNKRS" class="logo-image"></a>
             <div class="logo-text">DAW SNKRS</div>
@@ -23,6 +27,8 @@
             <a href="novedades.html">Novedades</a>
             <a href="deportes.html">Deportes</a>
             <a href="outlet.html">Outlet</a>
+            <a href="contacto.html">Contacto</a>
+            <a href="terminos.html">Términos y condiciones</a>
         </nav>
         <div class="cart">
             <i class="fas fa-shopping-cart cart-icon"></i>
@@ -172,13 +178,6 @@
                 <p>10:00h - 18:00h (Lunes a Viernes)</p>
             </div>
             <div class="footer-section">
-                <h4>Enlaces a páginas clave</h4>
-                <a href="proyecto.html">Inicio</a>
-                <a href="zapatillas.html">Zapatillas</a>
-                <a href="contacto.html">Contacto</a>
-                <a href="sobre_nosotros.html">Sobre nosotros</a>
-            </div>
-            <div class="footer-section">
                 <h4>Términos legales</h4>
                 <a href="#">Política de privacidad</a>
                 <a href="terminos.html">Términos y condiciones</a>
@@ -198,73 +197,6 @@
             <p>© DAW SNKRS. Todos los derechos reservados.</p>
         </div>
     </footer>
-    <script>
-        const cart = [];
-        const cartItemsList = document.getElementById("cartItems");
-        const cartTotal = document.getElementById("cartTotal");
-        const cartCountElement = document.querySelector(".cart-count");
-        const cartDropdown = document.getElementById("cartDropdown");
-        const clearCartBtn = document.getElementById("clearCart");
-        const checkoutBtn = document.getElementById("checkoutBtn");
-        let total = 0;
-
-        document.querySelectorAll(".btn").forEach((button, index) => {
-            button.addEventListener("click", () => {
-                const product = button.closest(".product");
-                const productName = product.querySelector("h2").textContent;
-                const productPrice = parseFloat(
-                    product.querySelector("p").textContent.replace("Precio: ", "").replace("€", "")
-                );
-
-                cart.push({ name: productName, price: productPrice });
-                total += productPrice;
-                updateCartUI();
-            });
-        });
-
-        function updateCartUI() {
-            cartItemsList.innerHTML = "";
-            cart.forEach((product, index) => {
-                const cartItem = document.createElement("li");
-                cartItem.classList.add("cart-item");
-
-                cartItem.innerHTML = `
-                    <span>${product.name} - ${product.price.toFixed(2)}€</span>
-                    <button onclick="removeFromCart(${index})">Eliminar</button>
-                `;
-                cartItemsList.appendChild(cartItem);
-            });
-
-            cartCountElement.textContent = cart.length;
-            cartTotal.textContent = `${total.toFixed(2)}€`;
-        }
-
-        function removeFromCart(index) {
-            total -= cart[index].price;
-            cart.splice(index, 1);
-            updateCartUI();
-        }
-
-        clearCartBtn.addEventListener("click", () => {
-            cart.length = 0;
-            total = 0;
-            updateCartUI();
-        });
-
-        document.querySelector(".cart-icon").addEventListener("click", () => {
-            cartDropdown.style.display = cartDropdown.style.display === "block" ? "none" : "block";
-        });
-
-        checkoutBtn.addEventListener("click", () => {
-            if (cart.length === 0) {
-                alert("El carrito está vacío. Añade productos antes de finalizar la compra.");
-                return;
-            }
-            alert(`Gracias por tu compra. Total a pagar: ${total.toFixed(2)}€`);
-            cart.length = 0;
-            total = 0;
-            updateCartUI();
-        });
-    </script>
+    <script src="cart.js"></script>
 </body>
 </html>

@@ -3,16 +3,138 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Apartado Legal - DAW SNKRS (2024)</title>
+    <title>DAW SNKRS - Términos y Condiciones</title>
     <link rel="stylesheet" href="centro.css">
     <link rel="stylesheet" href="cabecera.css">
     <link rel="stylesheet" href="pie.css">
-    <link rel="stylesheet" href="carrito.css">
-    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0-beta3/css/all.min.css">
+    <link rel="icon" href="fotos/imagen.ico" type="image/x-icon">
+    <link href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0-beta3/css/all.min.css" rel="stylesheet">
+    <link href="https://fonts.googleapis.com/css2?family=Oswald:wght@500;700&family=Poppins:wght@300;400;600&display=swap" rel="stylesheet">
+    
+    <style>
+        /* ESTILOS ESPECÍFICOS PARA LA PÁGINA DE TÉRMINOS */
+        body {
+            font-family: 'Poppins', sans-serif; /* Fuente principal para el cuerpo */
+            color: #333;
+            background-color: #f7f7f7;
+            line-height: 1.8; /* Mayor interlineado para mejor legibilidad */
+        }
+
+        main {
+            padding: 40px 20px;
+            max-width: 900px; /* Ancho máximo para el contenido principal */
+            margin: 20px auto; /* Centrar y añadir margen superior/inferior */
+            background-color: #ffffff;
+            border-radius: 12px;
+            box-shadow: 0 8px 20px rgba(0, 0, 0, 0.1); 
+            text-align: left; /* Asegurar que el texto se alinee a la izquierda dentro del main */
+        }
+
+        main h1 {
+            font-family: 'Oswald', sans-serif; /* Fuente para encabezados principales */
+            font-size: 2.8em; /* Tamaño de fuente más grande */
+            color: #1a1a1a; /* Negro más oscuro */
+            margin-bottom: 30px;
+            text-align: center;
+            position: relative;
+            padding-bottom: 15px;
+        }
+
+        main h1::after { /* Línea decorativa debajo del h1 */
+            content: '';
+            display: block;
+            width: 80px;
+            height: 4px;
+            background-color: #32A8FF; /* Azul de tu paleta */
+            margin: 15px auto 0;
+            border-radius: 2px;
+        }
+
+        main h2 {
+            font-family: 'Oswald', sans-serif; /* Fuente para subencabezados */
+            font-size: 1.8em;
+            color: #32A8FF; /* Azul de tu paleta */
+            margin-top: 40px;
+            margin-bottom: 20px;
+            padding-left: 10px;
+            border-left: 5px solid #F7F771; /* Borde izquierdo amarillo */
+        }
+
+        main article {
+            margin-bottom: 30px;
+            padding: 20px;
+            border: 1px solid #e0e0e0;
+            border-radius: 8px;
+            background-color: #fcfcfc;
+        }
+
+        main article:last-of-type {
+            margin-bottom: 0;
+        }
+
+        main p {
+            font-size: 1.1em; /* Un poco más grande para facilitar la lectura */
+            margin-bottom: 15px;
+            color: #555;
+            text-align: justify; /* Justificado como lo tenías */
+        }
+
+        main p b {
+            color: #333; /* Texto en negrita más oscuro */
+            font-weight: 600; /* Un poco más de grosor para la negrita */
+        }
+
+        /* Estilos específicos para la información de contacto legal */
+        .legal-contact-info p {
+            margin-bottom: 8px;
+            font-weight: 500;
+        }
+        .legal-contact-info b {
+            color: #32A8FF;
+            font-weight: 700;
+        }
+
+        /* Responsive adjustments */
+        @media (max-width: 768px) {
+            main {
+                padding: 30px 15px;
+                margin: 15px auto;
+            }
+
+            main h1 {
+                font-size: 2.2em;
+            }
+
+            main h2 {
+                font-size: 1.5em;
+            }
+
+            main p {
+                font-size: 1em;
+            }
+        }
+
+        @media (max-width: 480px) {
+            main {
+                padding: 20px 10px;
+            }
+
+            main h1 {
+                font-size: 1.8em;
+            }
+
+            main h2 {
+                font-size: 1.3em;
+            }
+        }
+    </style>
 </head>
 <body>
-    <!-- Encabezado -->
     <header>
+        <div style="float: right; margin: 10px;">
+            <a href="terminos.html" style="color: white; margin-right: 5px; text-decoration: none;">ES</a> |
+            <a href="terminos_en.html" style="color: white; margin-left: 5px; text-decoration: none;">EN</a>
+        </div>
         <div class="logo-container">
             <a href="proyecto.html"><img src="fotos/foto.png" alt="Logo DAW SNKRS" class="logo-image"></a>
             <div class="logo-text">DAW SNKRS</div>
@@ -24,94 +146,87 @@
             <a href="novedades.html">Novedades</a>
             <a href="deportes.html">Deportes</a>
             <a href="outlet.html">Outlet</a>
+            <a href="contacto.html">Contacto</a>
+            <a href="terminos.html">Términos y condiciones</a>
         </nav>
         <div class="cart">
-            <img src="fotos/cart-icon.png" alt="Carrito" class="cart-icon">
-            <div class="cart-count">0</div>
-            <div class="cart-dropdown">
-                <ul>
-                    <li class="cart-item">
-                        <p>Producto 1</p>
-                        <button>Eliminar</button>
-                    </li>
-                </ul>
-                <div class="cart-total">Total: $0.00</div>
-                <button class="checkout-btn">Pagar</button>
+            <i class="fas fa-shopping-cart cart-icon"></i>
+            <span class="cart-count">0</span>
+            <div class="cart-dropdown" id="cartDropdown">
+                <ul class="cart-items" id="cartItems"></ul>
+                <div class="cart-footer">
+                    <p>Total: <span id="cartTotal">0.00€</span></p>
+                    <button class="btn-clear-cart" id="clearCart">Vaciar carrito</button>
+                    <button class="checkout-btn" id="checkoutBtn">Finalizar compra</button>
+                </div>
             </div>
         </div>
     </header>
 
-    <!-- Contenido principal -->
     <main>
-        <section>
-            <h1>Apartado Legal de DAW SNKRS (2024)</h1>
-            <article>
-                <h2>1. Propiedad Intelectual</h2>
-                <p>Todos los diseños y productos de <b class="highlight">DAW SNKRS</b> son originales y están protegidos por la Ley de Propiedad Intelectual (<b>Real Decreto Legislativo 1/1996, de 12 de abril</b>).</p>
-                <p>Cualquier uso no autorizado de marcas, logotipos o diseños de terceros está estrictamente prohibido y será perseguido legalmente.</p>
-            </article>
+        <h1>Apartado Legal de DAW SNKRS (2025)</h1>
+        <article>
+            <h2>1. Propiedad Intelectual</h2>
+            <p>Todos los diseños y productos de <b style="color:blue">DAW SNKRS</b> son originales y están protegidos por la Ley de Propiedad Intelectual (<b>Real Decreto Legislativo 1/1996, de 12 de abril</b>).</p>
+            <p>Cualquier uso no autorizado de marcas, logotipos o diseños de terceros está estrictamente prohibido y será perseguido legalmente.</p>
+        </article>
 
-            <article>
-                <h2>2. Protección de Datos Personales</h2>
-                <p>Cumplimos con el Reglamento General de Protección de Datos (<b>RGPD</b>) y la Ley Orgánica de Protección de Datos y Garantía de los Derechos Digitales (<b>LOPDGDD</b>).</p>
-                <p>Los datos personales de nuestros clientes son tratados con la máxima confidencialidad y solo se utilizarán para los fines establecidos en nuestra política de privacidad.</p>
-            </article>
+        <article>
+            <h2>2. Protección de Datos Personales</h2>
+            <p>Cumplimos con el Reglamento General de Protección de Datos (<b>RGPD</b>) y la Ley Orgánica de Protección de Datos y Garantía de los Derechos Digitales (<b>LOPDGDD</b>).</p>
+            <p>Los datos personales de nuestros clientes son tratados con la máxima confidencialidad y solo se utilizarán para los fines establecidos en nuestra política de privacidad.</p>
+        </article>
 
-            <article>
-                <h2>3. Condiciones de Uso</h2>
-                <p>Al acceder y utilizar nuestro sitio web, los <b>usuarios aceptan cumplir con nuestras condiciones de uso</b>, que incluyen la prohibición de actividades ilegales o no autorizadas.</p>
-                <p>Nos reservamos el derecho de modificar estas condiciones en cualquier momento, notificando a los usuarios a través de nuestro sitio web.</p>
-            </article>
+        <article>
+            <h2>3. Condiciones de Uso</h2>
+            <p>Al acceder y utilizar nuestro sitio web, los <b>usuarios aceptan cumplir con nuestras condiciones de uso</b>, que incluyen la prohibición de actividades ilegales o no autorizadas.</p>
+            <p>Nos reservamos el derecho de modificar estas condiciones en cualquier momento, notificando a los usuarios a través de nuestro sitio web.</p>
+        </article>
 
-            <article>
-                <h2>4. Responsabilidad</h2>
-                <p><b class="highlight">DAW SNKRS</b> no se hace responsable de los daños directos o indirectos que puedan surgir del uso de nuestros productos o servicios.</p>
-                <p>En caso de que se produzcan errores en la información proporcionada, nos comprometemos a corregirlos a la mayor brevedad posible.</p>
-            </article>
+        <article>
+            <h2>4. Responsabilidad</h2>
+            <p><b style="color:blue">DAW SNKRS</b> no se hace responsable de los daños directos o indirectos que puedan surgir del uso de nuestros productos o servicios.</p>
+            <p>En caso de que se produzcan errores en la información proporcionada, nos comprometemos a corregirlos a la mayor brevedad posible.</p>
+        </article>
 
-            <article>
-                <h2>5. Contacto para Consultas Legales</h2>
-                <p>Para cualquier consulta relacionada con la propiedad intelectual, protección de datos o condiciones de uso, los interesados pueden ponerse en contacto con nuestro departamento legal a través de:</p>
-                <p>Correo: <b>legal@dawsnkrs.com</b><br>Teléfono: <b>+34 123 456 789</b></p>
-            </article>
-        </section>
+        <article class="legal-contact-info">
+            <h2>5. Contacto para Consultas Legales</h2>
+            <p>Para cualquier consulta relacionada con la propiedad intelectual, protección de datos o condiciones de uso, los interesados pueden ponerse en contacto con nuestro departamento legal a través de:</p>
+            <p>Correo: <b>legal@dawsnkrs.com</b></p>
+            <p>Teléfono: <b>+34 123 456 789</b></p>
+        </article>
 
-        <section>
-            <h1>Política de Privacidad</h1>
-            <article>
-                <h2>1. ¿Qué cubre esta política?</h2>
-                <p>Nuestra política de privacidad cubre situaciones en las que accedemos, recopilamos, almacenamos, tratamos, usamos, revelamos o transferimos sus datos personales.</p>
-            </article>
+        <h1>Política de Privacidad</h1>
+        <article>
+            <h2>1. ¿Qué cubre esta política?</h2>
+            <p>Nuestra política de privacidad cubre situaciones en las que accedemos, recopilamos, almacenamos, tratamos, usamos, revelamos o transferimos sus datos personales.</p>
+        </article>
 
-            <article>
-                <h2>2. Leyes aplicables según el país de residencia</h2>
-                <p>Esta política se ajusta a la <b>LOPDGDD y al RGPD</b> para residentes en España.</p>
-            </article>
+        <article>
+            <h2>2. Leyes aplicables según el país de residencia</h2>
+            <p>Esta política se ajusta a la <b>LOPDGDD y al RGPD</b> para residentes en España.</p>
+        </article>
 
-            <article>
-                <h2>3. ¿Quién recopila y usa sus datos personales?</h2>
-                <p><b class="highlight">DAW SNKRS</b> actúa como "<b>controlador de datos</b>". También trabajamos con socios que actúan como "<b>encargados del tratamiento</b>".</p>
-            </article>
+        <article>
+            <h2>3. ¿Quién recopila y usa sus datos personales?</h2>
+            <p><b style="color:blue">DAW SNKRS</b> actúa como "<b>controlador de datos</b>". También trabajamos con socios que actúan como "<b>encargados del tratamiento</b>".</p>
+        </article>
 
-            <article>
-                <h2>4. Finalidades de la recopilación de datos</h2>
-                <p>Utilizamos sus datos para:</p>
-                <ul>
-                    <li>Gestionar nuestra relación con usted.</li>
-                    <li>Ofrecer un servicio personalizado.</li>
-                    <li>Enviar contenido promocional adaptado a sus intereses.</li>
-                    <li>Prevenir fraudes y cumplir con obligaciones legales.</li>
-                </ul>
-            </article>
+        <article>
+            <h2>4. Finalidades de la recopilación de datos</h2>
+            <p>Utilizamos sus datos para:</p>
+            <p>Gestionar nuestra relación con usted.</p>
+            <p>Ofrecer un servicio personalizado.</p>
+            <p>Enviar contenido promocional adaptado a sus intereses.</p>
+            <p>Prevenir fraudes y cumplir con obligaciones legales.</p>
+        </article>
 
-            <article>
-                <h2>5. ¿Cómo protegemos sus datos personales?</h2>
-                <p>Implementamos medidas técnicas y organizativas para proteger sus datos contra accesos no autorizados, pérdida o uso indebido.</p>
-            </article>
-        </section>
+        <article>
+            <h2>5. ¿Cómo protegemos sus datos personales?</h2>
+            <p>Implementamos medidas técnicas y organizativas para proteger sus datos contra accesos no autorizados, pérdida o uso indebido.</p>
+        </article>
     </main>
 
-    <!-- Pie de página -->
     <footer>
         <div class="footer-container">
             <div class="footer-section">
@@ -122,13 +237,6 @@
                 <p>10:00h - 18:00h (Lunes a Viernes)</p>
             </div>
             <div class="footer-section">
-                <h4>Enlaces a páginas clave</h4>
-                <a href="proyecto.html">Inicio</a>
-                <a href="zapatillas.html">Tienda</a>
-                <a href="contacto.html">Contacto</a>
-                <a href="sobre_nosotros.html">Sobre nosotros</a>
-            </div>
-            <div class="footer-section">
                 <h4>Términos legales</h4>
                 <a href="#">Política de privacidad</a>
                 <a href="terminos.html">Términos y condiciones</a>
@@ -137,10 +245,10 @@
             <div class="footer-section">
                 <h4>Redes sociales</h4>
                 <div class="social-icons">
-                    <a href="https://www.facebook.com"><img src="fotos/facebook.png" alt="Facebook"></a>
-                    <a href="https://www.instagram.com"><img src="fotos/instagram.png" alt="Instagram"></a>
-                    <a href="https://www.twitter.com"><img src="fotos/twitter.png" alt="Twitter"></a>
-                    <a href="https://www.youtube.com"><img src="fotos/youtube.png" alt="YouTube"></a>
+                    <a href="https://www.facebook.com/"><img src="fotos/facebook.png" alt="Facebook"></a>
+                    <a href="https://www.instagram.com/"><img src="fotos/instagram.png" alt="Instagram"></a>
+                    <a href="https://www.twitter.com/"><img src="fotos/twitter.png" alt="Twitter"></a>
+                    <a href="https://www.youtube.com/"><img src="fotos/youtube.png" alt="YouTube"></a>
                 </div>
             </div>
         </div>
@@ -148,5 +256,6 @@
             <p>© DAW SNKRS. Todos los derechos reservados.</p>
         </div>
     </footer>
+    <script src="cart.js"></script>
 </body>
 </html>

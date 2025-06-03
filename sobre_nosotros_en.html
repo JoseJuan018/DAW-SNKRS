@@ -1,0 +1,212 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>About Us - DAW SNKRS</title>
+    <link rel="stylesheet" href="cabecera.css">
+    <link rel="stylesheet" href="pie.css">
+    <link rel="icon" href="fotos/imagen.ico" type="image/x-icon">
+    <link href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0-beta3/css/all.min.css" rel="stylesheet">
+    <style>
+        body {
+            font-family: 'Arial', sans-serif;
+            margin: 0;
+            padding: 0;
+            line-height: 1.6;
+            background-color: #f9f9f9;
+            color: #333;
+        }
+        .about-banner {
+            background: linear-gradient(to right, #ff416c, #ff4b2b);
+            color: white;
+            text-align: center;
+            padding: 50px 20px;
+            font-size: 2.5rem;
+            font-weight: bold;
+            box-shadow: 0 4px 8px rgba(0, 0, 0, 0.2);
+        }
+        .about-container {
+            padding: 40px 20px;
+            max-width: 1200px;
+            margin: 0 auto;
+            background-color: #fff;
+            border-radius: 10px;
+            box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+        }
+        .about-section {
+            margin-bottom: 40px;
+        }
+        .about-section h2 {
+            font-size: 2rem;
+            color: #ff4b2b;
+            margin-bottom: 15px;
+            border-bottom: 2px solid #ff4b2b;
+            display: inline-block;
+            padding-bottom: 5px;
+        }
+        .about-section p {
+            font-size: 1.1rem;
+            color: #555;
+            line-height: 1.8;
+            margin-bottom: 20px;
+        }
+        .about-image {
+            text-align: center;
+            margin: 30px 0;
+        }
+        .about-image img {
+            max-width: 100%;
+            border-radius: 10px;
+            box-shadow: 0 4px 8px rgba(0, 0, 0, 0.2);
+        }
+        .team-section {
+            display: flex;
+            flex-wrap: wrap;
+            justify-content: center;
+            gap: 30px;
+        }
+        .team-member {
+            text-align: center;
+            width: 250px;
+            background-color: #fff;
+            border-radius: 10px;
+            box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+            padding: 20px;
+        }
+        .team-member img {
+            width: 120px;
+            height: 120px;
+            border-radius: 50%;
+            box-shadow: 0 4px 8px rgba(0, 0, 0, 0.2);
+            margin-bottom: 15px;
+        }
+        .team-member h3 {
+            margin: 10px 0 5px;
+            font-size: 1.4rem;
+            color: #ff4b2b;
+        }
+        .team-member p {
+            font-size: 1rem;
+            color: #555;
+        }
+        .social-icons img {
+            width: 30px;
+            height: 30px;
+            margin: 0 5px;
+        }
+    </style>
+</head>
+<body>
+    <header>
+        <div style="float: right; margin: 10px;">
+            <a href="sobre_nosotros.html" style="color: white; margin-right: 5px; text-decoration: none;">ES</a> |
+            <a href="sobre_nosotros_en.html" style="color: white; margin-left: 5px; text-decoration: none;">EN</a>
+        </div>
+        <div class="logo-container">
+            <a href="proyecto_en.html"><img src="fotos/foto.png" alt="DAW SNKRS Logo" class="logo-image"></a>
+            <div class="logo-text">DAW SNKRS</div>
+        </div>
+        <nav>
+            <a href="proyecto_en.html">Home</a>
+            <a href="zapatillas_en.html">Shop</a>
+            <a href="sobre_nosotros_en.html">About Us</a>
+            <a href="novedades_en.html">News</a>
+            <a href="deportes_en.html">Sports</a>
+            <a href="outlet_en.html">Outlet</a>
+            <a href="contacto_en.html">Contact</a>
+            <a href="terminos_en.html">Terms and Conditions</a>
+        </nav>
+        <div class="cart">
+            <i class="fas fa-shopping-cart cart-icon"></i>
+            <span class="cart-count">0</span>
+            <div class="cart-dropdown" id="cartDropdown">
+                <ul class="cart-items" id="cartItems"></ul>
+                <div class="cart-footer">
+                    <p>Total: <span id="cartTotal">0.00€</span></p>
+                    <button class="btn-clear-cart" id="clearCart">Empty Cart</button>
+                    <button class="checkout-btn" id="checkoutBtn">Checkout</button>
+                </div>
+            </div>
+        </div>
+    </header>
+
+    <div class="about-banner">
+        Our History, Our Passion
+    </div>
+
+    <main class="about-container">
+        <section class="about-section">
+            <h2>Who We Are</h2>
+            <p>At DAW SNKRS, we are more than just a sneaker store. We are a community passionate about style, comfort, and innovation. Since our beginnings in 2015, we have worked to redefine how people see and feel footwear. With a perfect blend of modern design and functionality, our sneakers are made to accompany you every step of your journey.</p>
+        </section>
+
+        <section class="about-section">
+            <h2>Our Mission</h2>
+            <p>We believe that everyone deserves footwear that not only looks good but also feels incredible. Our mission is to offer high-quality sneakers that combine style and performance, all at accessible prices. Whether you're running a marathon, exploring the city, or simply relaxing, we want you to do it with confidence and comfort.</p>
+        </section>
+
+        <div class="about-image">
+            <img src="fotos/foto-historia.jpg" alt="Our History">
+        </div>
+
+        <section class="about-section">
+            <h2>Our Team</h2>
+            <p>Behind every pair of sneakers is a team of dreamers, designers, and footwear experts who work tirelessly to bring you the best. Meet some of the faces who make DAW SNKRS possible:</p>
+            <div class="team-section">
+                <div class="team-member">
+                    <img src="fotos/fundador.jpg" alt="Fundador">
+                    <h3>Ruben Sansaturnino</h3>
+                    <p>Fundador y CEO</p>
+                </div>
+                <div class="team-member">
+                    <img src="fotos/redes.jpg" alt="Diseñador">
+                    <h3>Jose Juan Panwu</h3>
+                    <p>Diseñador Principal</p>
+                </div>
+                <div class="team-member">
+                    <img src="fotos/marketing.jpg" alt="Marketing">
+                    <h3>Carlos Tudela</h3>
+                    <p>Director de Marketing</p>
+                </div>
+                <div class="team-member">
+                    <img src="fotos/atencion.jpg" alt="Atención al cliente">
+                    <h3>Laura Segarra</h3>
+                    <p>Atención al Cliente</p>
+                </div>
+            </div>
+        </section>
+    </main>
+
+    <footer>
+        <div class="footer-container">
+            <div class="footer-section">
+                <h4>Contact Information</h4>
+                <p>Email: contacto@dawsnkrs.com</p>
+                <p>Phone: +34 123 456 789</p>
+                <p>Opening Hours:</p>
+                <p>10:00h - 18:00h (Monday to Friday)</p>
+            </div>
+            <div class="footer-section">
+                <h4>Legal Terms</h4>
+                <a href="#">Privacy Policy</a>
+                <a href="terminos_en.html">Terms and Conditions</a>
+                <a href="#">Cookie Policy</a>
+            </div>
+            <div class="footer-section">
+                <h4>Social Media</h4>
+                <div class="social-icons">
+                    <a href="https://www.facebook.com/"><img src="fotos/facebook.png" alt="Facebook"></a>
+                    <a href="https://www.instagram.com/"><img src="fotos/instagram.png" alt="Instagram"></a>
+                    <a href="https://www.twitter.com/"><img src="fotos/twitter.png" alt="Twitter"></a>
+                    <a href="https://www.youtube.com/"><img src="fotos/youtube.png" alt="YouTube"></a>
+                </div>
+            </div>
+        </div>
+        <div class="footer-bottom">
+            <p>© DAW SNKRS. All rights reserved.</p>
+        </div>
+    </footer>
+    <script src="cart.js"></script>
+</body>
+</html>

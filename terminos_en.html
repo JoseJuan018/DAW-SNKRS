@@ -1,0 +1,261 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>DAW SNKRS - Terms and Conditions</title>
+    <link rel="stylesheet" href="centro.css">
+    <link rel="stylesheet" href="cabecera.css">
+    <link rel="stylesheet" href="pie.css">
+    <link rel="icon" href="fotos/imagen.ico" type="image/x-icon">
+    <link href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0-beta3/css/all.min.css" rel="stylesheet">
+    <link href="https://fonts.googleapis.com/css2?family=Oswald:wght@500;700&family=Poppins:wght@300;400;600&display=swap" rel="stylesheet">
+    
+    <style>
+        /* SPECIFIC STYLES FOR THE TERMS PAGE (ENGLISH) */
+        body {
+            font-family: 'Poppins', sans-serif; /* Main font for body */
+            color: #333;
+            background-color: #f7f7f7;
+            line-height: 1.8; /* Increased line-height for better readability */
+        }
+
+        main {
+            padding: 40px 20px;
+            max-width: 900px; /* Max width for main content */
+            margin: 20px auto; /* Center and add top/bottom margin */
+            background-color: #ffffff;
+            border-radius: 12px;
+            box-shadow: 0 8px 20px rgba(0, 0, 0, 0.1); /* More pronounced shadow */
+            text-align: left; /* Ensure text aligns to the left within main */
+        }
+
+        main h1 {
+            font-family: 'Oswald', sans-serif; /* Font for main headings */
+            font-size: 2.8em; /* Larger font size */
+            color: #1a1a1a; /* Darker black */
+            margin-bottom: 30px;
+            text-align: center;
+            position: relative;
+            padding-bottom: 15px;
+        }
+
+        main h1::after { /* Decorative line below h1 */
+            content: '';
+            display: block;
+            width: 80px;
+            height: 4px;
+            background-color: #32A8FF; /* Blue from your palette */
+            margin: 15px auto 0;
+            border-radius: 2px;
+        }
+
+        main h2 {
+            font-family: 'Oswald', sans-serif; /* Font for subheadings */
+            font-size: 1.8em;
+            color: #32A8FF; /* Blue from your palette */
+            margin-top: 40px;
+            margin-bottom: 20px;
+            padding-left: 10px;
+            border-left: 5px solid #F7F771; /* Yellow left border */
+        }
+
+        main article {
+            margin-bottom: 30px;
+            padding: 20px;
+            border: 1px solid #e0e0e0;
+            border-radius: 8px;
+            background-color: #fcfcfc;
+        }
+
+        main article:last-of-type {
+            margin-bottom: 0;
+        }
+
+        main p {
+            font-size: 1.1em; /* Slightly larger for easier reading */
+            margin-bottom: 15px;
+            color: #555;
+            text-align: justify; /* Justified as you had it */
+        }
+
+        main p b {
+            color: #333; /* Bolder text color */
+            font-weight: 600; /* Slightly thicker for bold */
+        }
+
+        /* Specific styles for legal contact information */
+        .legal-contact-info p {
+            margin-bottom: 8px;
+            font-weight: 500;
+        }
+        .legal-contact-info b {
+            color: #32A8FF;
+            font-weight: 700;
+        }
+
+        /* Responsive adjustments */
+        @media (max-width: 768px) {
+            main {
+                padding: 30px 15px;
+                margin: 15px auto;
+            }
+
+            main h1 {
+                font-size: 2.2em;
+            }
+
+            main h2 {
+                font-size: 1.5em;
+            }
+
+            main p {
+                font-size: 1em;
+            }
+        }
+
+        @media (max-width: 480px) {
+            main {
+                padding: 20px 10px;
+            }
+
+            main h1 {
+                font-size: 1.8em;
+            }
+
+            main h2 {
+                font-size: 1.3em;
+            }
+        }
+    </style>
+</head>
+<body>
+    <header>
+        <div style="float: right; margin: 10px;">
+            <a href="terminos.html" style="color: white; margin-right: 5px; text-decoration: none;">ES</a> |
+            <a href="terminos_en.html" style="color: white; margin-left: 5px; text-decoration: none;">EN</a>
+        </div>
+        <div class="logo-container">
+            <a href="proyecto_en.html"><img src="fotos/foto.png" alt="DAW SNKRS Logo" class="logo-image"></a>
+            <div class="logo-text">DAW SNKRS</div>
+        </div>
+        <nav>
+            <a href="proyecto_en.html">Home</a>
+            <a href="zapatillas_en.html">Shop</a>
+            <a href="sobre_nosotros_en.html">About Us</a>
+            <a href="novedades_en.html">News</a>
+            <a href="deportes_en.html">Sports</a>
+            <a href="outlet_en.html">Outlet</a>
+            <a href="contacto_en.html">Contact</a>
+            <a href="terminos_en.html">Terms and Conditions</a>
+        </nav>
+        <div class="cart">
+            <i class="fas fa-shopping-cart cart-icon"></i>
+            <span class="cart-count">0</span>
+            <div class="cart-dropdown" id="cartDropdown">
+                <ul class="cart-items" id="cartItems"></ul>
+                <div class="cart-footer">
+                    <p>Total: <span id="cartTotal">0.00€</span></p>
+                    <button class="btn-clear-cart" id="clearCart">Empty Cart</button>
+                    <button class="checkout-btn" id="checkoutBtn">Checkout</button>
+                </div>
+            </div>
+        </div>
+    </header>
+
+    <main>
+        <h1>Legal Section of DAW SNKRS (2025)</h1>
+        <article>
+            <h2>1. Intellectual Property</h2>
+            <p>All designs and products of <b style="color:blue">DAW SNKRS</b> are original and protected by the Intellectual Property Law (<b>Royal Legislative Decree 1/1996, of April 12</b>).</p>
+            <p>Any unauthorized use of third-party trademarks, logos, or designs is strictly prohibited and will be legally pursued.</p>
+        </article>
+
+        <article>
+            <h2>2. Personal Data Protection</h2>
+            <p>We comply with the General Data Protection Regulation (<b>GDPR</b>) and the Organic Law on Data Protection and Guarantee of Digital Rights (<b>LOPDGDD</b>).</p>
+            <p>Our customers' personal data is treated with the utmost confidentiality and will only be used for the purposes established in our privacy policy.</p>
+        </article>
+
+        <article>
+            <h2>3. Terms of Use</h2>
+            <p>By accessing and using our website, <b>users agree to comply with our terms of use</b>, which include the prohibition of illegal or unauthorized activities.</p>
+            <p>We reserve the right to modify these terms at any time, notifying users through our website.</p>
+        </article>
+
+        <article>
+            <h2>4. Responsibility</h2>
+            <p><b style="color:blue">DAW SNKRS</b> is not responsible for direct or indirect damages that may arise from the use of our products or services.</p>
+            <p>In case of errors in the information provided, we commit to correcting them as soon as possible.</p>
+        </article>
+
+        <article class="legal-contact-info">
+            <h2>5. Contact for Legal Inquiries</h2>
+            <p>For any inquiries related to intellectual property, data protection, or terms of use, interested parties can contact our legal department via:</p>
+            <p>Email: <b>legal@dawsnkrs.com</b></p>
+            <p>Phone: <b>+34 123 456 789</b></p>
+        </article>
+
+        <h1>Privacy Policy</h1>
+        <article>
+            <h2>1. What does this policy cover?</h2>
+            <p>Our privacy policy covers situations where we access, collect, store, process, use, disclose, or transfer your personal data.</p>
+        </article>
+
+        <article>
+            <h2>2. Applicable laws based on country of residence</h2>
+            <p>This policy complies with the <b>LOPDGDD and the GDPR</b> for residents in Spain.</p>
+        </article>
+
+        <article>
+            <h2>3. Who collects and uses your personal data?</h2>
+            <p><b style="color:blue">DAW SNKRS</b> acts as a "<b>data controller</b>". We also work with partners who act as "<b>data processors</b>".</p>
+        </article>
+
+        <article>
+            <h2>4. Purposes of data collection</h2>
+            <p>We use your data to:</p>
+            <p>Manage our relationship with you.</p>
+            <p>Offer a personalized service.</p>
+            <p>Send promotional content tailored to your interests.</p>
+            <p>Prevent fraud and comply with legal obligations.</p>
+        </article>
+
+        <article>
+            <h2>5. How do we protect your personal data?</h2>
+            <p>We implement technical and organizational measures to protect your data against unauthorized access, loss, or misuse.</p>
+        </article>
+    </main>
+
+    <footer>
+        <div class="footer-container">
+            <div class="footer-section">
+                <h4>Contact Information</h4>
+                <p>Email: contacto@dawsnkrs.com</p>
+                <p>Phone: +34 123 456 789</p>
+                <p>Opening Hours:</p>
+                <p>10:00h - 18:00h (Monday to Friday)</p>
+            </div>
+            <div class="footer-section">
+                <h4>Legal Terms</h4>
+                <a href="#">Privacy Policy</a>
+                <a href="terminos_en.html">Terms and Conditions</a>
+                <a href="#">Cookie Policy</a>
+            </div>
+            <div class="footer-section">
+                <h4>Social Media</h4>
+                <div class="social-icons">
+                    <a href="https://www.facebook.com/"><img src="fotos/facebook.png" alt="Facebook"></a>
+                    <a href="https://www.instagram.com/"><img src="fotos/instagram.png" alt="Instagram"></a>
+                    <a href="https://www.twitter.com/"><img src="fotos/twitter.png" alt="Twitter"></a>
+                    <a href="https://www.youtube.com/"><img src="fotos/youtube.png" alt="YouTube"></a>
+                </div>
+            </div>
+        </div>
+        <div class="footer-bottom">
+            <p>© DAW SNKRS. All rights reserved.</p>
+        </div>
+    </footer>
+    <script src="cart.js"></script>
+</body>
+</html>

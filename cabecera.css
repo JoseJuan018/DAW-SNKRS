@@ -11,7 +11,6 @@ header {
     align-items: center;
     background-color: #000;
     padding: 20px;
-    position: relative;
 }
 
 header .logo-container {
@@ -42,6 +41,16 @@ header nav a:hover {
     text-decoration: underline;
 }
 
+/* Header */
+header {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    background-color: #000;
+    padding: 20px;
+    position: relative;
+}
+
 .cart {
     position: relative;
     display: flex;
@@ -53,6 +62,33 @@ header nav a:hover {
     width: 30px; /* Tamaño del icono */
     height: 30px;
     filter: brightness(0) invert(1); /* Icono blanco */
+}
+
+.cart-count {
+    position: absolute;
+    top: -5px;
+    right: -10px;
+    background-color: #FF4500;
+    color: #fff;
+    font-size: 12px;
+    font-weight: bold;
+    border-radius: 50%;
+    padding: 4px 8px;
+    min-width: 20px;
+    text-align: center;
+    box-shadow: 0 4px 8px rgba(0, 0, 0, 0.2);
+}
+.cart {
+    position: relative;
+    display: flex;
+    align-items: center;
+    cursor: pointer;
+}
+
+.cart-icon {
+    width: 30px;
+    height: 30px;
+    filter: brightness(0) invert(1);
 }
 
 .cart-count {
@@ -119,7 +155,6 @@ header nav a:hover {
 .checkout-btn:hover {
     background-color: #287ac6;
 }
-
 .cart-item {
     display: flex;
     justify-content: space-between;

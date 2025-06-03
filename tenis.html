@@ -3,7 +3,7 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>DAW SNKRS - Deportes</title>
+    <title>DAW SNKRS - Tenis</title>
     <link rel="stylesheet" href="centro.css">
     <link rel="stylesheet" href="cabecera.css">
     <link rel="stylesheet" href="pie.css">
@@ -15,96 +15,67 @@
             flex-direction: column;
             align-items: center;
             text-align: center;
-            gap: 20px; /* Add spacing between the heading and products */
-            padding: 20px 0; /* Add padding to the section */
+            gap: 20px;
+            padding: 20px 0;
         }
 
         .catalog h1 {
-            margin: 0; /* Remove extra margin */
+            margin: 0;
         }
 
         .product-container {
             display: flex;
             justify-content: center;
             gap: 20px;
-            flex-wrap: wrap; /* Allow wrapping for better layout on smaller screens */
         }
 
         .product {
-            width: 250px; /* Increase width */
-            height: 300px; /* Increase height */
             display: flex;
-            flex-direction: column-reverse; /* Reverse the order to place text at the top */
+            flex-direction: row; /* Cambiar a fila */
             align-items: center;
-            justify-content: center; /* Center content vertically */
-            text-align: center;
-            padding: 10px;
+            text-align: left; /* Alinear texto a la izquierda */
+            padding: 0;
             border: 1px solid #ddd;
             border-radius: 5px;
             box-shadow: 0 2px 5px rgba(0, 0, 0, 0.1);
-            cursor: pointer; /* Make the product container look clickable */
+            overflow: hidden;
+            width: 400px; /* Ajustar ancho */
         }
 
         .product img {
-            max-width: 100%;
+            width: 150px; /* Ajustar tamaño de la imagen */
             height: auto;
-            margin-bottom: 10px;
+            display: block;
         }
 
-        .product.tenis {
-            background-image: url('fotos/tenis.jpg');
-            background-size: cover;
-            background-position: center;
+        .product-content {
+            padding: 10px;
+            flex: 1; /* Permitir que el contenido ocupe el resto del espacio */
+        }
+
+        .product h2 {
+            margin: 10px 0;
+            font-size: 1rem;
+            color: #333;
+        }
+
+        .product p {
+            font-size: 0.9rem;
+            color: #555;
+        }
+
+        .btn {
+            background-color: #007bff;
             color: white;
-            text-shadow: 1px 1px 2px rgba(0, 0, 0, 0.7);
-            padding: 20px;
-            border: none; /* Remove border for a cleaner look */
-        }
-
-        .product.tenis img {
-            display: none; /* Hide the image since it's now a background */
-        }
-
-        .product.futbol {
-            background-image: url('fotos/futbol.jpg');
-            background-size: cover;
-            background-position: center;
-            color: white;
-            text-shadow: 1px 1px 2px rgba(0, 0, 0, 0.7);
-            padding: 20px;
             border: none;
+            padding: 8px 12px;
+            border-radius: 5px;
+            cursor: pointer;
+            transition: background-color 0.3s ease;
         }
 
-        .product.futbol img {
-            display: none;
-        }
-
-        .product.running {
-            background-image: url('fotos/running.jpg'); /* Set the background image */
-            background-size: cover;
-            background-position: center;
-            color: white;
-            text-shadow: 1px 1px 2px rgba(0, 0, 0, 0.7);
-            padding: 20px;
-            border: none;
-        }
-
-        .product.running img {
-            display: none; /* Hide the image since it's now a background */
-        }
-
-        .product.baloncesto {
-            background-image: url('fotos/basket2.jpg'); /* Use the provided image */
-            background-size: cover;
-            background-position: center;
-            color: white;
-            text-shadow: 1px 1px 2px rgba(0, 0, 0, 0.7);
-            padding: 20px;
-            border: none;
-        }
-
-        .product.baloncesto img {
-            display: none;
+        .btn:hover {
+            background-color: #0056b3;
         }
 
         .cart-dropdown {
@@ -126,27 +97,28 @@
         }
 
         .cart-dropdown li {
+            display: flex;
+            justify-content: space-between;
             padding: 10px;
             border-bottom: 1px solid #ddd;
         }
 
         .cart-footer {
             padding: 10px;
-            text-align: center;
+            text-align: right;
         }
 
-        .btn-clear-cart,
-        .checkout-btn {
-            margin: 5px;
-            padding: 10px;
-            border: none;
+        .btn-clear-cart, .checkout-btn {
             background-color: #007bff;
             color: white;
+            border: none;
+            padding: 8px 12px;
+            border-radius: 5px;
             cursor: pointer;
+            margin-left: 5px;
         }
 
-        .btn-clear-cart:hover,
-        .checkout-btn:hover {
+        .btn-clear-cart:hover, .checkout-btn:hover {
             background-color: #0056b3;
         }
     </style>
@@ -154,8 +126,8 @@
 <body>
     <header>
         <div style="float: right; margin: 10px;">
-            <a href="deportes.html" style="color: white; margin-right: 5px; text-decoration: none;">ES</a> |
-            <a href="deportes_en.html" style="color: white; margin-left: 5px; text-decoration: none;">EN</a>
+            <a href="tenis.html" style="color: white; margin-right: 5px; text-decoration: none;">ES</a> |
+            <a href="tenis_en.html" style="color: white; margin-left: 5px; text-decoration: none;">EN</a>
         </div>
         <div class="logo-container">
             <a href="proyecto.html"><img src="fotos/foto.png" alt="Logo DAW SNKRS" class="logo-image"></a>
@@ -186,12 +158,24 @@
     </header>
     <main>
         <section class="catalog">
-            <h1>Elija Su Deporte</h1>
+            <h1>Zapatillas de Tenis</h1>
             <div class="product-container">
-                <a href="tenis.html" class="product tenis"></a>
-                <a href="futbol.html" class="product futbol"></a>
-                <a href="running.html" class="product running"></a>
-                <a href="baloncesto.html" class="product baloncesto"></a>
+                <div class="product">
+                    <img src="fotos/tenis3.avif" alt="Zapatilla Tenis Pro">
+                    <div class="product-content">
+                        <h2>Zapatilla Tenis Pro</h2>
+                        <p>Precio: 89.99€</p>
+                        <button class="btn">Añadir al carrito</button>
+                    </div>
+                </div>
+                <div class="product">
+                    <img src="fotos/tenis2.jpg" alt="Zapatilla Tenis Elite">
+                    <div class="product-content">
+                        <h2>Zapatilla Tenis Elite</h2>
+                        <p>Precio: 99.99€</p>
+                        <button class="btn">Añadir al carrito</button>
+                    </div>
+                </div>
             </div>
         </section>
     </main>
