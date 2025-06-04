@@ -9,6 +9,92 @@
     <link rel="stylesheet" href="pie.css">
     <link rel="icon" href="fotos/imagen.ico" type="image/x-icon">
     <link href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0-beta3/css/all.min.css" rel="stylesheet">
+    <style>
+        /* Estilos específicos para la sección de productos en zapatillas.html */
+        /* Asegúrate de que estos estilos estén en centro.css o aquí, pero sean responsive */
+        .catalog {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(280px, 1fr)); /* Columnas responsivas */
+            gap: 30px; /* Espacio entre productos */
+            padding: 40px 20px; /* Padding alrededor del catálogo */
+            max-width: 1200px;
+            margin: 0 auto; /* Centrar el catálogo */
+        }
+
+        .product {
+            background-color: #fff;
+            border: 1px solid #ddd;
+            border-radius: 8px;
+            box-shadow: 0 4px 12px rgba(0,0,0,0.08);
+            text-align: center;
+            padding: 20px;
+            transition: transform 0.3s ease;
+        }
+
+        .product:hover {
+            transform: translateY(-5px);
+        }
+
+        .product img {
+            max-width: 100%;
+            height: 200px; /* Altura fija para las imágenes, ajusta si es necesario */
+            object-fit: cover; /* Cubrir el espacio sin distorsionar */
+            border-radius: 4px;
+            margin-bottom: 15px;
+        }
+
+        .product h2 {
+            font-size: 1.5em;
+            color: #333;
+            margin-bottom: 10px;
+        }
+
+        .product p {
+            font-size: 1.2em;
+            color: #666;
+            margin-bottom: 20px;
+            font-weight: bold;
+        }
+
+        .product .btn {
+            background-color: #32A8FF;
+            color: #fff;
+            padding: 10px 20px;
+            border: none;
+            border-radius: 5px;
+            font-size: 1em;
+            cursor: pointer;
+            transition: background-color 0.3s ease;
+        }
+
+        .product .btn:hover {
+            background-color: #287ac6;
+        }
+
+        /* Responsive adjustments para el catálogo de productos */
+        @media (max-width: 768px) {
+            .catalog {
+                grid-template-columns: repeat(auto-fit, minmax(250px, 1fr)); /* Más pequeñas en tablet */
+                gap: 20px;
+                padding: 30px 15px;
+            }
+
+            .product img {
+                height: 180px;
+            }
+        }
+
+        @media (max-width: 480px) {
+            .catalog {
+                grid-template-columns: 1fr; /* Una sola columna en móvil */
+                padding: 20px 10px;
+            }
+
+            .product img {
+                height: 160px;
+            }
+        }
+    </style>
 </head>
 <body>
     <header>
@@ -20,8 +106,7 @@
             <a href="proyecto.html"><img src="fotos/foto.png" alt="Logo DAW SNKRS" class="logo-image"></a>
             <div class="logo-text">DAW SNKRS</div>
         </div>
-        <nav>
-            <a href="proyecto.html">Inicio</a>
+        <nav id="mainNav"> <a href="proyecto.html">Inicio</a>
             <a href="zapatillas.html">Tienda</a>
             <a href="sobre_nosotros.html">Sobre nosotros</a>
             <a href="novedades.html">Novedades</a>
@@ -42,6 +127,9 @@
                 </div>
             </div>
         </div>
+        <div class="menu-toggle" id="menuToggle">
+            <i class="fas fa-bars"></i>
+        </div>
     </header>
     <main>
         <section class="catalog">
@@ -49,121 +137,121 @@
                 <img src="fotos/guapa.jpg" alt="Urban Sneakers">
                 <h2>Urban Sneakers</h2>
                 <p>Precio: 59.99€</p>
-                <button class="btn">Añadir al carrito</button>
+                <button class="btn add-to-cart" data-name="Urban Sneakers" data-price="59.99">Añadir al carrito</button>
             </article>
             <article class="product">
                 <img src="fotos/guapa20.jpeg" alt="Running Pro">
                 <h2>Running Pro</h2>
                 <p>Precio: 79.99€</p>
-                <button class="btn">Añadir al carrito</button>
+                <button class="btn add-to-cart" data-name="Running Pro" data-price="79.99">Añadir al carrito</button>
             </article>
             <article class="product">
                 <img src="fotos/guapa2.jpg" alt="Casual Comfort">
                 <h2>Casual Comfort</h2>
                 <p>Precio: 69.99€</p>
-                <button class="btn">Añadir al carrito</button>
+                <button class="btn add-to-cart" data-name="Casual Comfort" data-price="69.99">Añadir al carrito</button>
             </article>
             <article class="product">
                 <img src="fotos/guapa3.jpg" alt="Sport Flex">
                 <h2>Sport Flex</h2>
                 <p>Precio: 89.99€</p>
-                <button class="btn">Añadir al carrito</button>
+                <button class="btn add-to-cart" data-name="Sport Flex" data-price="89.99">Añadir al carrito</button>
             </article>
             <article class="product">
                 <img src="fotos/guapa4.jpg" alt="Retro Classic">
                 <h2>Retro Classic</h2>
                 <p>Precio: 99.99€</p>
-                <button class="btn">Añadir al carrito</button>
+                <button class="btn add-to-cart" data-name="Retro Classic" data-price="99.99">Añadir al carrito</button>
             </article>
             <article class="product">
                 <img src="fotos/guapa5.jpg" alt="Modern Wave">
                 <h2>Modern Wave</h2>
                 <p>Precio: 109.99€</p>
-                <button class="btn">Añadir al carrito</button>
+                <button class="btn add-to-cart" data-name="Modern Wave" data-price="109.99">Añadir al carrito</button>
             </article>
             <article class="product">
                 <img src="fotos/guapa6.jpg" alt="Urban Chic">
                 <h2>Urban Chic</h2>
                 <p>Precio: 119.99€</p>
-                <button class="btn">Añadir al carrito</button>
+                <button class="btn add-to-cart" data-name="Urban Chic" data-price="119.99">Añadir al carrito</button>
             </article>
             <article class="product">
                 <img src="fotos/guapa7.jpg" alt="Active Runner">
                 <h2>Active Runner</h2>
                 <p>Precio: 129.99€</p>
-                <button class="btn">Añadir al carrito</button>
+                <button class="btn add-to-cart" data-name="Active Runner" data-price="129.99">Añadir al carrito</button>
             </article>
             <article class="product">
                 <img src="fotos/guapa8.jpg" alt="Fitness Pro">
                 <h2>Fitness Pro</h2>
                 <p>Precio: 139.99€</p>
-                <button class="btn">Añadir al carrito</button>
+                <button class="btn add-to-cart" data-name="Fitness Pro" data-price="139.99">Añadir al carrito</button>
             </article>
             <article class="product">
                 <img src="fotos/guapa9.jpeg" alt="Comfort Walk">
                 <h2>Comfort Walk</h2>
                 <p>Precio: 149.99€</p>
-                <button class="btn">Añadir al carrito</button>
+                <button class="btn add-to-cart" data-name="Comfort Walk" data-price="149.99">Añadir al carrito</button>
             </article>
             <article class="product">
                 <img src="fotos/guapa10.avif" alt="Speedster">
                 <h2>Speedster</h2>
                 <p>Precio: 159.99€</p>
-                <button class="btn">Añadir al carrito</button>
+                <button class="btn add-to-cart" data-name="Speedster" data-price="159.99">Añadir al carrito</button>
             </article>
             <article class="product">
                 <img src="fotos/guapa11.jpg" alt="Urban Runner">
                 <h2>Urban Runner</h2>
                 <p>Precio: 169.99€</p>
-                <button class="btn">Añadir al carrito</button>
+                <button class="btn add-to-cart" data-name="Urban Runner" data-price="169.99">Añadir al carrito</button>
             </article>
             <article class="product">
                 <img src="fotos/guapa12.jpeg" alt="Elite Sport">
                 <h2>Elite Sport</h2>
                 <p>Precio: 179.99€</p>
-                <button class="btn">Añadir al carrito</button>
+                <button class="btn add-to-cart" data-name="Elite Sport" data-price="179.99">Añadir al carrito</button>
             </article>
             <article class="product">
                 <img src="fotos/guapa13.png" alt="Urban Style">
                 <h2>Urban Style</h2>
                 <p>Precio: 189.99€</p>
-                <button class="btn">Añadir al carrito</button>
+                <button class="btn add-to-cart" data-name="Urban Style" data-price="189.99">Añadir al carrito</button>
             </article>
             <article class="product">
                 <img src="fotos/guapa14.jpg" alt="Pro Runner">
                 <h2>Pro Runner</h2>
                 <p>Precio: 199.99€</p>
-                <button class="btn">Añadir al carrito</button>
+                <button class="btn add-to-cart" data-name="Pro Runner" data-price="199.99">Añadir al carrito</button>
             </article>
             <article class="product">
                 <img src="fotos/guapa15.avif" alt="Urban Sport">
                 <h2>Urban Sport</h2>
                 <p>Precio: 209.99€</p>
-                <button class="btn">Añadir al carrito</button>
+                <button class="btn add-to-cart" data-name="Urban Sport" data-price="209.99">Añadir al carrito</button>
             </article>
             <article class="product">
                 <img src="fotos/guapa16.avif" alt="Comfort Fit">
                 <h2>Comfort Fit</h2>
                 <p>Precio: 219.99€</p>
-                <button class="btn">Añadir al carrito</button>
+                <button class="btn add-to-cart" data-name="Comfort Fit" data-price="219.99">Añadir al carrito</button>
             </article>
             <article class="product">
                 <img src="fotos/guapa17.jpg" alt="Urban Elite">
                 <h2>Urban Elite</h2>
                 <p>Precio: 229.99€</p>
-                <button class="btn">Añadir al carrito</button>
+                <button class="btn add-to-cart" data-name="Urban Elite" data-price="229.99">Añadir al carrito</button>
             </article>
             <article class="product">
                 <img src="fotos/guapa18.jpg" alt="Active Sport">
                 <h2>Active Sport</h2>
                 <p>Precio: 239.99€</p>
-                <button class="btn">Añadir al carrito</button>
+                <button class="btn add-to-cart" data-name="Active Sport" data-price="239.99">Añadir al carrito</button>
             </article>
             <article class="product">
                 <img src="fotos/guapa19.jpg" alt="Urban Pro">
                 <h2>Urban Pro</h2>
                 <p>Precio: 249.99€</p>
-                <button class="btn">Añadir al carrito</button>
+                <button class="btn add-to-cart" data-name="Urban Pro" data-price="249.99">Añadir al carrito</button>
             </article>
         </section>
     </main>
@@ -197,5 +285,60 @@
         </div>
     </footer>
     <script src="cart.js"></script>
+    <script>
+        document.addEventListener('DOMContentLoaded', () => {
+            const menuToggle = document.getElementById('menuToggle');
+            const mainNav = document.getElementById('mainNav');
+            const cartIcon = document.querySelector('.cart-icon');
+            const cartDropdown = document.getElementById('cartDropdown');
+
+            // Toggle para el menú hamburguesa
+            if (menuToggle && mainNav) {
+                menuToggle.addEventListener('click', () => {
+                    mainNav.classList.toggle('active');
+                    // Opcional: Cierra el carrito si está abierto al abrir el menú
+                    if (cartDropdown && cartDropdown.classList.contains('active')) {
+                        cartDropdown.classList.remove('active');
+                    }
+                });
+            }
+
+            // Lógica para el carrito (ajusta esto con tu lógica de cart.js si es muy diferente)
+            // Si cart.js ya maneja todo el carrito y es externo, puedes quitar esta parte.
+            // Si el cart.js depende de elementos que se cargan después del DOMContentLoaded,
+            // considera refactorizar o re-inicializar en un setTimeout aquí.
+            if (cartIcon && cartDropdown) {
+                cartIcon.addEventListener('click', (event) => {
+                    cartDropdown.classList.toggle('active');
+                    event.stopPropagation(); // Evita que el clic se propague al documento
+                    // Opcional: Cierra el menú hamburguesa si está abierto al abrir el carrito
+                    if (mainNav && mainNav.classList.contains('active')) {
+                        mainNav.classList.remove('active');
+                    }
+                });
+
+                // Cierra el carrito si se hace clic fuera de él
+                document.addEventListener('click', (event) => {
+                    if (cartDropdown && !cartDropdown.contains(event.target) && event.target !== cartIcon) {
+                        cartDropdown.classList.remove('active');
+                    }
+                });
+            }
+
+            // Lógica para añadir productos al carrito (solo para esta página si no está en cart.js)
+            const addToCartButtons = document.querySelectorAll('.add-to-cart');
+            addToCartButtons.forEach(button => {
+                button.addEventListener('click', (event) => {
+                    const productName = event.target.dataset.name;
+                    const productPrice = parseFloat(event.target.dataset.price);
+                    // Aquí llamarías a tu función para añadir al carrito de cart.js
+                    // Por ejemplo, si tienes una función global addProductToCart(name, price);
+                    // addProductToCart(productName, productPrice);
+                    console.log(`Producto añadido: ${productName} - ${productPrice}€`);
+                    // Asegúrate de que tu cart.js maneje la actualización del cart-count y cart-total
+                });
+            });
+        });
+    </script>
 </body>
 </html>
