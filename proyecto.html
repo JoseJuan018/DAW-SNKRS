@@ -96,24 +96,7 @@
             margin-bottom: 30px;
         }
 
-        /* Responsive adjustments */
-        @media (max-width: 768px) {
-            .video-hero-section {
-                height: 50vh; /* Menos altura en móviles */
-            }
-            .video-hero-content h1 {
-                font-size: 2.5em;
-            }
-            .video-hero-content p {
-                font-size: 1em;
-            }
-            .product-grid {
-                grid-template-columns: 1fr; /* Una columna en pantallas pequeñas */
-                padding: 0 10px; /* Ajusta el padding en móvil */
-            }
-        }
-        /* --- ESTILOS PARA EL FORMULARIO DE LOGIN DIRECTO EN CABECERA --- */
-
+        /* --- ESTILOS PARA EL FORMULARIO DE LOGIN DIRECTO EN CABECERA (Copiados de novedades.html) --- */
         .login-form-in-header {
             display: none; /* Oculto por defecto */
             position: absolute; /* Posiciona debajo del botón Login/Usuario */
@@ -208,8 +191,31 @@
             text-decoration: none;
         }
 
-        /* Ajustes responsive para el enlace de login/usuario */
-        @media (max-width: 900px) {
+        /* Media query for menu toggle (from novedades.html, ensures consistency) */
+        .menu-toggle {
+            display: none; /* Hidden by default for desktop */
+            font-size: 1.5em;
+            color: white;
+            cursor: pointer;
+        }
+
+        /* Responsive adjustments */
+        @media (max-width: 900px) { /* Usar 900px como breakpoint para el menú hamburguesa */
+            .video-hero-section {
+                height: 50vh; /* Menos altura en móviles */
+            }
+            .video-hero-content h1 {
+                font-size: 2.5em;
+            }
+            .video-hero-content p {
+                font-size: 1em;
+            }
+            .product-grid {
+                grid-template-columns: 1fr; /* Una columna en pantallas pequeñas */
+                padding: 0 10px; /* Ajusta el padding en móvil */
+            }
+
+            /* --- ESTILOS RESPONSIVE PARA CABECERA (Copiados de novedades.html) --- */
             .user-auth-status {
                 order: 3; /* Asegura que vaya después del carrito y el menú toggle */
                 margin-left: 10px; /* Ajusta el margen en móvil */
@@ -222,6 +228,64 @@
             .login-form-in-header {
                 right: 15px; /* Ajusta para que no se salga de la pantalla en móviles */
                 width: 220px; /* Ancho más pequeño en móvil */
+            }
+
+            .menu-toggle {
+                display: block; /* Show on smaller screens */
+                order: 1; /* Position it first in the flex container */
+                margin-right: 15px;
+            }
+
+            header nav {
+                display: none; /* Hide main nav by default on small screens */
+                flex-direction: column;
+                position: absolute;
+                top: 100%; /* Position below the header */
+                left: 0;
+                width: 100%;
+                background-color: #333; /* Background color for dropdown */
+                box-shadow: 0 8px 16px rgba(0,0,0,0.2);
+                z-index: 1000;
+                padding: 10px 0;
+            }
+
+            header nav.active {
+                display: flex; /* Show when active */
+            }
+
+            header nav a {
+                padding: 10px 20px;
+                text-align: center;
+                border-bottom: 1px solid #555;
+            }
+
+            header nav a:last-child {
+                border-bottom: none;
+            }
+
+            /* Adjust header layout for mobile */
+            header {
+                display: flex;
+                justify-content: space-between;
+                align-items: center;
+                padding: 10px 20px;
+                position: relative; /* Needed for absolute positioning of nav and login form */
+            }
+
+            .logo-container {
+                order: 2; /* Position logo in the middle */
+                flex-grow: 1; /* Allow logo to take available space */
+                text-align: center;
+            }
+
+            .cart {
+                order: 4; /* Position cart last */
+                position: relative;
+            }
+
+            .cart-dropdown {
+                right: 0; /* Adjust dropdown position for mobile */
+                left: auto;
             }
         }
     </style>
@@ -325,7 +389,7 @@
             const cartIcon = document.querySelector('.cart-icon');
             const cartDropdown = document.getElementById('cartDropdown');
 
-            // Elementos del login directo en cabecera
+            // START: Login/Logout elements and functionality
             const userAuthStatus = document.getElementById('userAuthStatus');
             const loginFormContainer = document.getElementById('loginFormContainer');
             const loginForm = document.getElementById('loginForm');
@@ -333,33 +397,39 @@
             const passwordInput = document.getElementById('password');
             const loginMessage = document.getElementById('loginMessage');
 
-            // --- Persistencia con localStorage ---
             const LOCAL_STORAGE_USERNAME_KEY = 'loggedInUsername';
 
-            // Función para actualizar el estado del botón/enlace de login
+            /**
+             * Updates the login status display based on localStorage.
+             * If a username is stored, it displays the username and sets up a logout listener.
+             * Otherwise, it displays "Login" and sets up a login form toggle listener.
+             */
             function updateLoginStatus() {
                 const storedUsername = localStorage.getItem(LOCAL_STORAGE_USERNAME_KEY);
                 if (storedUsername) {
                     userAuthStatus.textContent = storedUsername;
                     userAuthStatus.classList.add('logged-in');
-                    userAuthStatus.removeEventListener('click', toggleLoginForm); // Quitar listener para no abrir el formulario
-                    userAuthStatus.addEventListener('click', logout); // Añadir listener para cerrar sesión
+                    userAuthStatus.removeEventListener('click', toggleLoginForm); // Prevent opening login form if logged in
+                    userAuthStatus.addEventListener('click', logout); // Enable logout functionality
                 } else {
                     userAuthStatus.textContent = 'Login';
                     userAuthStatus.classList.remove('logged-in');
-                    userAuthStatus.removeEventListener('click', logout);
-                    userAuthStatus.addEventListener('click', toggleLoginForm); // Abre el formulario de nuevo
+                    userAuthStatus.removeEventListener('click', logout); // Remove logout listener if not logged in
+                    userAuthStatus.addEventListener('click', toggleLoginForm); // Enable login form toggle
                 }
-                userAuthStatus.style.cursor = 'pointer'; // Mantener cursor como pointer
+                userAuthStatus.style.cursor = 'pointer'; // Keep cursor as pointer
             }
 
-            // Función para mostrar/ocultar el formulario de login directo
+            /**
+             * Toggles the visibility of the login form dropdown.
+             * Closes other open menus (main nav, cart) for better UX.
+             */
             function toggleLoginForm(event) {
                 event.preventDefault();
-                loginFormContainer.classList.toggle('active'); // Alterna la visibilidad del formulario
-                loginMessage.textContent = ''; // Limpia mensajes anteriores
+                loginFormContainer.classList.toggle('active'); // Toggle form visibility
+                loginMessage.textContent = ''; // Clear previous messages
 
-                // Cierra otros elementos si están abiertos
+                // Close other open dropdowns for a cleaner UI
                 if (mainNav && mainNav.classList.contains('active')) {
                     mainNav.classList.remove('active');
                 }
@@ -367,104 +437,104 @@
                     cartDropdown.classList.remove('active');
                 }
 
-                // Si el formulario se acaba de abrir, enfocar el campo de usuario
+                // If the login form just opened, focus on the username input
                 if (loginFormContainer.classList.contains('active')) {
                     usernameInput.focus();
                 }
             }
 
-            // Función para cerrar sesión
+            /**
+             * Handles user logout.
+             * Removes the stored username from localStorage and updates the UI.
+             */
             function logout(event) {
                 event.preventDefault();
-                localStorage.removeItem(LOCAL_STORAGE_USERNAME_KEY); // Eliminar el nombre de usuario de localStorage
-                updateLoginStatus();
+                localStorage.removeItem(LOCAL_STORAGE_USERNAME_KEY); // Remove username from localStorage
+                updateLoginStatus(); // Update the UI to reflect logout
                 alert('Sesión cerrada correctamente.');
-                // Opcional: Recargar la página o limpiar el estado de la aplicación
-                // window.location.reload();
+                // Optional: window.location.reload(); // Reload page if necessary for full state reset
             }
 
-            // Función para cerrar el formulario si se hace clic fuera
+            /**
+             * Closes the login form dropdown if a click occurs outside of it.
+             */
             function closeLoginFormOnClickOutside(event) {
-                // Si el clic no fue dentro del formulario, ni el botón de login, y el formulario está activo
+                // If the click was not inside the login form container, nor on the user status button,
+                // and the login form is currently active, then close it.
                 if (!loginFormContainer.contains(event.target) && event.target !== userAuthStatus && loginFormContainer.classList.contains('active')) {
                     loginFormContainer.classList.remove('active');
                 }
             }
 
-            // --- Event Listeners principales ---
-
-            // Toggle para el menú hamburguesa
-            if (menuToggle && mainNav) {
-                menuToggle.addEventListener('click', () => {
-                    mainNav.classList.toggle('active');
-                    // Cierra el formulario de login si está abierto
-                    if (loginFormContainer && loginFormContainer.classList.contains('active')) {
-                        loginFormContainer.classList.remove('active');
-                    }
-                    if (cartDropdown && cartDropdown.classList.contains('active')) {
-                        cartDropdown.classList.remove('active');
-                    }
-                });
-            }
-
-            // Lógica para el carrito
-            if (cartIcon && cartDropdown) {
-                cartIcon.addEventListener('click', (event) => {
-                    cartDropdown.classList.toggle('active');
-                    event.stopPropagation();
-                    // Cierra el formulario de login si está abierto
-                    if (loginFormContainer && loginFormContainer.classList.contains('active')) {
-                        loginFormContainer.classList.remove('active');
-                    }
-                    if (mainNav && mainNav.classList.contains('active')) {
-                        mainNav.classList.remove('active');
-                    }
-                });
-
-                document.addEventListener('click', (event) => {
-                    if (cartDropdown && !cartDropdown.contains(event.target) && event.target !== cartIcon) {
-                        cartDropdown.classList.remove('active');
-                    }
-                });
-            }
-
-            // --- Lógica de Login/Logout ---
-
-            // Inicializar el estado del botón de login al cargar CUALQUIER página
+            // Initialize login status when the DOM is fully loaded
             updateLoginStatus();
-
-            // Event listener para el botón/enlace de login (inicialmente para mostrar el formulario)
-            // userAuthStatus.addEventListener('click', toggleLoginForm); // Esto ahora lo hace updateLoginStatus
-
-            // Event listener para cerrar el formulario si se hace clic fuera
+            // Add a global click listener to close the login form when clicking outside
             document.addEventListener('click', closeLoginFormOnClickOutside);
 
-            // Lógica de "login" simulado: cualquier usuario/contraseña es válida
+            // Handle the simulated login form submission
             loginForm.addEventListener('submit', (event) => {
-                event.preventDefault(); // Evita el envío real del formulario
+                event.preventDefault(); // Prevent default form submission (page reload)
 
                 const username = usernameInput.value.trim();
                 const password = passwordInput.value.trim();
 
                 if (username === '' || password === '') {
                     loginMessage.textContent = 'Por favor, rellena ambos campos.';
-                    loginMessage.className = 'login-message error';
+                    loginMessage.className = 'login-message error'; // Apply error styling
                 } else {
-                    // Simulación de inicio de sesión exitoso
-                    localStorage.setItem(LOCAL_STORAGE_USERNAME_KEY, username); // ¡Guarda el nombre de usuario!
+                    // Simulate successful login: store username in localStorage
+                    localStorage.setItem(LOCAL_STORAGE_USERNAME_KEY, username);
                     loginMessage.textContent = `¡Bienvenido, ${username}!`;
-                    loginMessage.className = 'login-message success';
+                    loginMessage.className = 'login-message success'; // Apply success styling
 
-                    // Oculta el formulario y actualiza el estado del botón/enlace de login
+                    // Hide the form and update the login status after a short delay
                     setTimeout(() => {
-                        loginFormContainer.classList.remove('active'); // Oculta el formulario
-                        updateLoginStatus(); // Actualiza el texto del botón (ahora leerá de localStorage)
-                        // Limpia los campos del formulario después del login exitoso
+                        loginFormContainer.classList.remove('active'); // Hide the form
+                        updateLoginStatus(); // Update button text to display username
+                        // Clear input fields
                         usernameInput.value = '';
                         passwordInput.value = '';
-                    }, 1000); // Pequeño delay para ver el mensaje
+                    }, 1000); // Short delay to allow user to see success message
                 }
             });
+            // END: Login/Logout elements and functionality
+
+
+            // Toggle for the hamburger menu
+            if (menuToggle && mainNav) {
+                menuToggle.addEventListener('click', () => {
+                    mainNav.classList.toggle('active');
+                    // Close other open dropdowns for a cleaner UI
+                    if (cartDropdown && cartDropdown.classList.contains('active')) {
+                        cartDropdown.classList.remove('active');
+                    }
+                    if (loginFormContainer && loginFormContainer.classList.contains('active')) {
+                        loginFormContainer.classList.remove('active'); // Close login form
+                    }
+                });
+            }
+
+            // Cart logic (assumed to be handled by cart.js but added general listeners here)
+            if (cartIcon && cartDropdown) {
+                cartIcon.addEventListener('click', (event) => {
+                    cartDropdown.classList.toggle('active');
+                    event.stopPropagation(); // Prevent click from bubbling to document and closing immediately
+                    // Close other open dropdowns for a cleaner UI
+                    if (mainNav && mainNav.classList.contains('active')) {
+                        mainNav.classList.remove('active');
+                    }
+                    if (loginFormContainer && loginFormContainer.classList.contains('active')) {
+                        loginFormContainer.classList.remove('active'); // Close login form
+                    }
+                });
+
+                // Close the cart dropdown if a click occurs outside of it
+                document.addEventListener('click', (event) => {
+                    if (cartDropdown && !cartDropdown.contains(event.target) && event.target !== cartIcon) {
+                        cartDropdown.classList.remove('active');
+                    }
+                });
+            }
         });
     </script>
 </body>
