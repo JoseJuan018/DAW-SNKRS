@@ -94,6 +94,118 @@
                 height: 160px;
             }
         }
+        /* --- ESTILOS PARA EL FORMULARIO DE LOGIN DIRECTO EN CABECERA (COPIADOS DE PROYECTO.HTML) --- */
+
+        .login-form-in-header {
+            display: none; /* Oculto por defecto */
+            position: absolute; /* Posiciona debajo del botón Login/Usuario */
+            top: 100%; /* Justo debajo del header */
+            right: 0;
+            background-color: #333; /* Color de fondo */
+            border: 1px solid #555;
+            border-radius: 5px;
+            box-shadow: 0 4px 8px rgba(0,0,0,0.2);
+            padding: 15px;
+            width: 250px; /* Ancho del formulario */
+            z-index: 1500; /* Asegura que esté por encima de otros elementos */
+            flex-direction: column; /* Organiza los elementos verticalmente */
+            gap: 10px; /* Espacio entre los elementos del formulario */
+            animation: fadeInDown 0.3s ease-out;
+        }
+
+        @keyframes fadeInDown {
+            from { opacity: 0; transform: translateY(-10px); }
+            to { opacity: 1; transform: translateY(0); }
+        }
+
+        .login-form-in-header.active {
+            display: flex; /* Muestra el formulario cuando está activo */
+        }
+
+        .login-form-in-header label {
+            color: #eee;
+            font-size: 0.9em;
+            margin-bottom: -5px; /* Ajuste visual */
+        }
+
+        .login-form-in-header input[type="text"],
+        .login-form-in-header input[type="password"] {
+            width: calc(100% - 20px); /* Ancho completo menos padding */
+            padding: 8px 10px;
+            border: 1px solid #666;
+            border-radius: 4px;
+            background-color: #222;
+            color: #fff;
+            font-size: 0.9em;
+        }
+
+        .login-form-in-header button {
+            background-color: #32A8FF;
+            color: white;
+            padding: 8px 15px;
+            border: none;
+            border-radius: 4px;
+            cursor: pointer;
+            font-size: 0.9em;
+            font-weight: 600;
+            transition: background-color 0.3s ease;
+        }
+
+        .login-form-in-header button:hover {
+            background-color: #287ac6;
+        }
+
+        .login-message {
+            text-align: center;
+            font-size: 0.85em;
+            margin-top: 5px;
+            color: #ffcc00; /* Color de advertencia */
+        }
+        .login-message.success { color: #00ff00; } /* Verde para éxito */
+        .login-message.error { color: #ff0000; } /* Rojo para error */
+
+        /* Estilos para el enlace/botón de Login/Usuario */
+        .user-auth-status {
+            color: white;
+            text-decoration: none;
+            font-size: 14px;
+            margin-right: 10px; /* Ajusta el margen si lo necesitas */
+            transition: color 0.3s ease, background-color 0.3s ease;
+            padding: 5px 10px; /* Añadir padding para que parezca botón */
+            border-radius: 5px;
+            cursor: pointer;
+            white-space: nowrap; /* Evita que el nombre de usuario se rompa */
+        }
+        .user-auth-status:hover {
+            color: #32A8FF; /* Color al pasar el ratón */
+            text-decoration: underline;
+        }
+        /* Para cuando es el nombre de usuario */
+        .user-auth-status.logged-in {
+            background-color: #28a745; /* Fondo verde cuando está logueado */
+            font-weight: bold;
+        }
+        .user-auth-status.logged-in:hover {
+            background-color: #218838;
+            text-decoration: none;
+        }
+
+        /* Ajustes responsive para el enlace de login/usuario */
+        @media (max-width: 900px) {
+            .user-auth-status {
+                order: 3; /* Asegura que vaya después del carrito y el menú toggle */
+                margin-left: 10px; /* Ajusta el margen en móvil */
+                padding: 5px 8px; /* Reduce padding */
+            }
+            .user-auth-status.logged-in {
+                padding: 5px 8px; /* Asegura que el padding sea consistente */
+            }
+
+            .login-form-in-header {
+                right: 15px; /* Ajusta para que no se salga de la pantalla en móviles */
+                width: 220px; /* Ancho más pequeño en móvil */
+            }
+        }
     </style>
 </head>
 <body>
@@ -106,7 +218,8 @@
             <a href="proyecto.html"><img src="fotos/foto.png" alt="Logo DAW SNKRS" class="logo-image"></a>
             <div class="logo-text">DAW SNKRS</div>
         </div>
-        <nav id="mainNav"> <a href="proyecto.html">Inicio</a>
+        <nav id="mainNav">
+            <a href="proyecto.html">Inicio</a>
             <a href="zapatillas.html">Tienda</a>
             <a href="sobre_nosotros.html">Sobre nosotros</a>
             <a href="novedades.html">Novedades</a>
@@ -126,6 +239,17 @@
                     <button class="checkout-btn" id="checkoutBtn">Finalizar compra</button>
                 </div>
             </div>
+        </div>
+        <a href="#" id="userAuthStatus" class="user-auth-status">Login</a>
+        <div id="loginFormContainer" class="login-form-in-header">
+            <form id="loginForm">
+                <label for="username">Usuario:</label>
+                <input type="text" id="username" name="username" placeholder="Tu usuario" required>
+                <label for="password">Contraseña:</label>
+                <input type="password" id="password" name="password" placeholder="Tu contraseña" required>
+                <button type="submit">Entrar</button>
+                <p id="loginMessage" class="login-message"></p>
+            </form>
         </div>
         <div class="menu-toggle" id="menuToggle">
             <i class="fas fa-bars"></i>
@@ -292,38 +416,146 @@
             const cartIcon = document.querySelector('.cart-icon');
             const cartDropdown = document.getElementById('cartDropdown');
 
+            // Elementos del login directo en cabecera
+            const userAuthStatus = document.getElementById('userAuthStatus');
+            const loginFormContainer = document.getElementById('loginFormContainer');
+            const loginForm = document.getElementById('loginForm');
+            const usernameInput = document.getElementById('username');
+            const passwordInput = document.getElementById('password');
+            const loginMessage = document.getElementById('loginMessage');
+
+            // --- Persistencia con localStorage ---
+            const LOCAL_STORAGE_USERNAME_KEY = 'loggedInUsername';
+
+            // Función para actualizar el estado del botón/enlace de login
+            function updateLoginStatus() {
+                const storedUsername = localStorage.getItem(LOCAL_STORAGE_USERNAME_KEY);
+                if (storedUsername) {
+                    userAuthStatus.textContent = storedUsername;
+                    userAuthStatus.classList.add('logged-in');
+                    userAuthStatus.removeEventListener('click', toggleLoginForm); // Quitar listener para no abrir el formulario
+                    userAuthStatus.addEventListener('click', logout); // Añadir listener para cerrar sesión
+                } else {
+                    userAuthStatus.textContent = 'Login';
+                    userAuthStatus.classList.remove('logged-in');
+                    userAuthStatus.removeEventListener('click', logout);
+                    userAuthStatus.addEventListener('click', toggleLoginForm); // Abre el formulario de nuevo
+                }
+                userAuthStatus.style.cursor = 'pointer'; // Mantener cursor como pointer
+            }
+
+            // Función para mostrar/ocultar el formulario de login directo
+            function toggleLoginForm(event) {
+                event.preventDefault();
+                loginFormContainer.classList.toggle('active'); // Alterna la visibilidad del formulario
+                loginMessage.textContent = ''; // Limpia mensajes anteriores
+
+                // Cierra otros elementos si están abiertos
+                if (mainNav && mainNav.classList.contains('active')) {
+                    mainNav.classList.remove('active');
+                }
+                if (cartDropdown && cartDropdown.classList.contains('active')) {
+                    cartDropdown.classList.remove('active');
+                }
+
+                // Si el formulario se acaba de abrir, enfocar el campo de usuario
+                if (loginFormContainer.classList.contains('active')) {
+                    usernameInput.focus();
+                }
+            }
+
+            // Función para cerrar sesión
+            function logout(event) {
+                event.preventDefault();
+                localStorage.removeItem(LOCAL_STORAGE_USERNAME_KEY); // Eliminar el nombre de usuario de localStorage
+                updateLoginStatus();
+                alert('Sesión cerrada correctamente.');
+                // Opcional: Recargar la página o limpiar el estado de la aplicación
+                // window.location.reload();
+            }
+
+            // Función para cerrar el formulario si se hace clic fuera
+            function closeLoginFormOnClickOutside(event) {
+                // Si el clic no fue dentro del formulario, ni el botón de login, y el formulario está activo
+                if (!loginFormContainer.contains(event.target) && event.target !== userAuthStatus && loginFormContainer.classList.contains('active')) {
+                    loginFormContainer.classList.remove('active');
+                }
+            }
+
+            // --- Event Listeners principales ---
+
             // Toggle para el menú hamburguesa
             if (menuToggle && mainNav) {
                 menuToggle.addEventListener('click', () => {
                     mainNav.classList.toggle('active');
-                    // Opcional: Cierra el carrito si está abierto al abrir el menú
+                    // Cierra el formulario de login si está abierto
+                    if (loginFormContainer && loginFormContainer.classList.contains('active')) {
+                        loginFormContainer.classList.remove('active');
+                    }
                     if (cartDropdown && cartDropdown.classList.contains('active')) {
                         cartDropdown.classList.remove('active');
                     }
                 });
             }
 
-            // Lógica para el carrito (ajusta esto con tu lógica de cart.js si es muy diferente)
-            // Si cart.js ya maneja todo el carrito y es externo, puedes quitar esta parte.
-            // Si el cart.js depende de elementos que se cargan después del DOMContentLoaded,
-            // considera refactorizar o re-inicializar en un setTimeout aquí.
+            // Lógica para el carrito
             if (cartIcon && cartDropdown) {
                 cartIcon.addEventListener('click', (event) => {
                     cartDropdown.classList.toggle('active');
-                    event.stopPropagation(); // Evita que el clic se propague al documento
-                    // Opcional: Cierra el menú hamburguesa si está abierto al abrir el carrito
+                    event.stopPropagation();
+                    // Cierra el formulario de login si está abierto
+                    if (loginFormContainer && loginFormContainer.classList.contains('active')) {
+                        loginFormContainer.classList.remove('active');
+                    }
                     if (mainNav && mainNav.classList.contains('active')) {
                         mainNav.classList.remove('active');
                     }
                 });
 
-                // Cierra el carrito si se hace clic fuera de él
                 document.addEventListener('click', (event) => {
                     if (cartDropdown && !cartDropdown.contains(event.target) && event.target !== cartIcon) {
                         cartDropdown.classList.remove('active');
                     }
                 });
             }
+
+            // --- Lógica de Login/Logout ---
+
+            // Inicializar el estado del botón de login al cargar CUALQUIER página
+            updateLoginStatus();
+
+            // Event listener para el botón/enlace de login (inicialmente para mostrar el formulario)
+            // userAuthStatus.addEventListener('click', toggleLoginForm); // Esto ahora lo hace updateLoginStatus
+
+            // Event listener para cerrar el formulario si se hace clic fuera
+            document.addEventListener('click', closeLoginFormOnClickOutside);
+
+            // Lógica de "login" simulado: cualquier usuario/contraseña es válida
+            loginForm.addEventListener('submit', (event) => {
+                event.preventDefault(); // Evita el envío real del formulario
+
+                const username = usernameInput.value.trim();
+                const password = passwordInput.value.trim();
+
+                if (username === '' || password === '') {
+                    loginMessage.textContent = 'Por favor, rellena ambos campos.';
+                    loginMessage.className = 'login-message error';
+                } else {
+                    // Simulación de inicio de sesión exitoso
+                    localStorage.setItem(LOCAL_STORAGE_USERNAME_KEY, username); // ¡Guarda el nombre de usuario!
+                    loginMessage.textContent = `¡Bienvenido, ${username}!`;
+                    loginMessage.className = 'login-message success';
+
+                    // Oculta el formulario y actualiza el estado del botón/enlace de login
+                    setTimeout(() => {
+                        loginFormContainer.classList.remove('active'); // Oculta el formulario
+                        updateLoginStatus(); // Actualiza el texto del botón (ahora leerá de localStorage)
+                        // Limpia los campos del formulario después del login exitoso
+                        usernameInput.value = '';
+                        passwordInput.value = '';
+                    }, 1000); // Pequeño delay para ver el mensaje
+                }
+            });
 
             // Lógica para añadir productos al carrito (solo para esta página si no está en cart.js)
             const addToCartButtons = document.querySelectorAll('.add-to-cart');

@@ -80,7 +80,188 @@
              width: 20px;
              height: 20px;
              margin: 0 5px;
-    }
+        }
+
+        /* --- ESTILOS PARA EL FORMULARIO DE LOGIN DIRECTO EN CABECERA --- */
+
+        .login-form-in-header {
+            display: none; /* Oculto por defecto */
+            position: absolute; /* Posiciona debajo del botón Login/Usuario */
+            top: 100%; /* Justo debajo del header */
+            right: 0;
+            background-color: #333; /* Color de fondo */
+            border: 1px solid #555;
+            border-radius: 5px;
+            box-shadow: 0 4px 8px rgba(0,0,0,0.2);
+            padding: 15px;
+            width: 250px; /* Ancho del formulario */
+            z-index: 1500; /* Asegura que esté por encima de otros elementos */
+            flex-direction: column; /* Organiza los elementos verticalmente */
+            gap: 10px; /* Espacio entre los elementos del formulario */
+            animation: fadeInDown 0.3s ease-out;
+        }
+
+        @keyframes fadeInDown {
+            from { opacity: 0; transform: translateY(-10px); }
+            to { opacity: 1; transform: translateY(0); }
+        }
+
+        .login-form-in-header.active {
+            display: flex; /* Muestra el formulario cuando está activo */
+        }
+
+        .login-form-in-header label {
+            color: #eee;
+            font-size: 0.9em;
+            margin-bottom: -5px; /* Ajuste visual */
+        }
+
+        .login-form-in-header input[type="text"],
+        .login-form-in-header input[type="password"] {
+            width: calc(100% - 20px); /* Ancho completo menos padding */
+            padding: 8px 10px;
+            border: 1px solid #666;
+            border-radius: 4px;
+            background-color: #222;
+            color: #fff;
+            font-size: 0.9em;
+        }
+
+        .login-form-in-header button {
+            background-color: #32A8FF;
+            color: white;
+            padding: 8px 15px;
+            border: none;
+            border-radius: 4px;
+            cursor: pointer;
+            font-size: 0.9em;
+            font-weight: 600;
+            transition: background-color 0.3s ease;
+        }
+
+        .login-form-in-header button:hover {
+            background-color: #287ac6;
+        }
+
+        .login-message {
+            text-align: center;
+            font-size: 0.85em;
+            margin-top: 5px;
+            color: #ffcc00; /* Color de advertencia */
+        }
+        .login-message.success { color: #00ff00; } /* Verde para éxito */
+        .login-message.error { color: #ff0000; } /* Rojo para error */
+
+        /* Estilos para el enlace/botón de Login/Usuario */
+        .user-auth-status {
+            color: white;
+            text-decoration: none;
+            font-size: 14px;
+            margin-right: 10px; /* Ajusta el margen si lo necesitas */
+            transition: color 0.3s ease, background-color 0.3s ease;
+            padding: 5px 10px; /* Añadir padding para que parezca botón */
+            border-radius: 5px;
+            cursor: pointer;
+            white-space: nowrap; /* Evita que el nombre de usuario se rompa */
+        }
+        .user-auth-status:hover {
+            color: #32A8FF; /* Color al pasar el ratón */
+            text-decoration: underline;
+        }
+        /* Para cuando es el nombre de usuario */
+        .user-auth-status.logged-in {
+            background-color: #28a745; /* Fondo verde cuando está logueado */
+            font-weight: bold;
+        }
+        .user-auth-status.logged-in:hover {
+            background-color: #218838;
+            text-decoration: none;
+        }
+
+        /* Ajustes responsive para el enlace de login/usuario */
+        @media (max-width: 900px) {
+            .user-auth-status {
+                order: 3; /* Asegura que vaya después del carrito y el menú toggle */
+                margin-left: 10px; /* Ajusta el margen en móvil */
+                padding: 5px 8px; /* Reduce padding */
+            }
+            .user-auth-status.logged-in {
+                padding: 5px 8px; /* Asegura que el padding sea consistente */
+            }
+
+            .login-form-in-header {
+                right: 15px; /* Ajusta para que no se salga de la pantalla en móviles */
+                width: 220px; /* Ancho más pequeño en móvil */
+            }
+        }
+        /* Media query for menu toggle (from cabecera.css if not already there) */
+        .menu-toggle {
+            display: none; /* Hidden by default for desktop */
+            font-size: 1.5em;
+            color: white;
+            cursor: pointer;
+        }
+
+        @media (max-width: 900px) {
+            .menu-toggle {
+                display: block; /* Show on smaller screens */
+                order: 1; /* Position it first in the flex container */
+                margin-right: 15px;
+            }
+
+            header nav {
+                display: none; /* Hide main nav by default on small screens */
+                flex-direction: column;
+                position: absolute;
+                top: 100%; /* Position below the header */
+                left: 0;
+                width: 100%;
+                background-color: #333; /* Background color for dropdown */
+                box-shadow: 0 8px 16px rgba(0,0,0,0.2);
+                z-index: 1000;
+                padding: 10px 0;
+            }
+
+            header nav.active {
+                display: flex; /* Show when active */
+            }
+
+            header nav a {
+                padding: 10px 20px;
+                text-align: center;
+                border-bottom: 1px solid #555;
+            }
+
+            header nav a:last-child {
+                border-bottom: none;
+            }
+
+            /* Adjust header layout for mobile */
+            header {
+                display: flex;
+                justify-content: space-between;
+                align-items: center;
+                padding: 10px 20px;
+                position: relative; /* Needed for absolute positioning of nav and login form */
+            }
+
+            .logo-container {
+                order: 2; /* Position logo in the middle */
+                flex-grow: 1; /* Allow logo to take available space */
+                text-align: center;
+            }
+
+            .cart {
+                order: 4; /* Position cart last */
+                position: relative;
+            }
+
+            .cart-dropdown {
+                right: 0; /* Adjust dropdown position for mobile */
+                left: auto;
+            }
+        }
+
     </style>
 </head>
 <body>
@@ -93,7 +274,7 @@
             <a href="proyecto.html"><img src="fotos/foto.png" alt="Logo DAW SNKRS" class="logo-image"></a>
             <div class="logo-text">DAW SNKRS</div>
         </div>
-        <nav>
+        <nav id="mainNav">
             <a href="proyecto.html">Inicio</a>
             <a href="zapatillas.html">Tienda</a>
             <a href="sobre_nosotros.html">Sobre nosotros</a>
@@ -114,6 +295,20 @@
                     <button class="checkout-btn" id="checkoutBtn">Finalizar compra</button>
                 </div>
             </div>
+        </div>
+        <a href="#" id="userAuthStatus" class="user-auth-status">Login</a>
+        <div id="loginFormContainer" class="login-form-in-header">
+            <form id="loginForm">
+                <label for="username">Usuario:</label>
+                <input type="text" id="username" name="username" placeholder="Tu usuario" required>
+                <label for="password">Contraseña:</label>
+                <input type="password" id="password" name="password" placeholder="Tu contraseña" required>
+                <button type="submit">Entrar</button>
+                <p id="loginMessage" class="login-message"></p>
+            </form>
+        </div>
+        <div class="menu-toggle" id="menuToggle">
+            <i class="fas fa-bars"></i>
         </div>
     </header>
 
@@ -191,5 +386,160 @@
         </div>
     </footer>
     <script src="cart.js"></script>
+    <script>
+        document.addEventListener('DOMContentLoaded', () => {
+            const menuToggle = document.getElementById('menuToggle');
+            const mainNav = document.getElementById('mainNav');
+            const cartIcon = document.querySelector('.cart-icon');
+            const cartDropdown = document.getElementById('cartDropdown');
+
+            // START: Login/Logout elements and functionality
+            const userAuthStatus = document.getElementById('userAuthStatus');
+            const loginFormContainer = document.getElementById('loginFormContainer');
+            const loginForm = document.getElementById('loginForm');
+            const usernameInput = document.getElementById('username');
+            const passwordInput = document.getElementById('password');
+            const loginMessage = document.getElementById('loginMessage');
+
+            const LOCAL_STORAGE_USERNAME_KEY = 'loggedInUsername';
+
+            /**
+             * Updates the login status display based on localStorage.
+             * If a username is stored, it displays the username and sets up a logout listener.
+             * Otherwise, it displays "Login" and sets up a login form toggle listener.
+             */
+            function updateLoginStatus() {
+                const storedUsername = localStorage.getItem(LOCAL_STORAGE_USERNAME_KEY);
+                if (storedUsername) {
+                    userAuthStatus.textContent = storedUsername;
+                    userAuthStatus.classList.add('logged-in');
+                    userAuthStatus.removeEventListener('click', toggleLoginForm); // Prevent opening login form if logged in
+                    userAuthStatus.addEventListener('click', logout); // Enable logout functionality
+                } else {
+                    userAuthStatus.textContent = 'Login';
+                    userAuthStatus.classList.remove('logged-in');
+                    userAuthStatus.removeEventListener('click', logout); // Remove logout listener if not logged in
+                    userAuthStatus.addEventListener('click', toggleLoginForm); // Enable login form toggle
+                }
+                userAuthStatus.style.cursor = 'pointer'; // Keep cursor as pointer
+            }
+
+            /**
+             * Toggles the visibility of the login form dropdown.
+             * Closes other open menus (main nav, cart) for better UX.
+             */
+            function toggleLoginForm(event) {
+                event.preventDefault();
+                loginFormContainer.classList.toggle('active'); // Toggle form visibility
+                loginMessage.textContent = ''; // Clear previous messages
+
+                // Close other open dropdowns for a cleaner UI
+                if (mainNav && mainNav.classList.contains('active')) {
+                    mainNav.classList.remove('active');
+                }
+                if (cartDropdown && cartDropdown.classList.contains('active')) {
+                    cartDropdown.classList.remove('active');
+                }
+
+                // If the login form just opened, focus on the username input
+                if (loginFormContainer.classList.contains('active')) {
+                    usernameInput.focus();
+                }
+            }
+
+            /**
+             * Handles user logout.
+             * Removes the stored username from localStorage and updates the UI.
+             */
+            function logout(event) {
+                event.preventDefault();
+                localStorage.removeItem(LOCAL_STORAGE_USERNAME_KEY); // Remove username from localStorage
+                updateLoginStatus(); // Update the UI to reflect logout
+                alert('Sesión cerrada correctamente.');
+                // Optional: window.location.reload(); // Reload page if necessary for full state reset
+            }
+
+            /**
+             * Closes the login form dropdown if a click occurs outside of it.
+             */
+            function closeLoginFormOnClickOutside(event) {
+                // If the click was not inside the login form container, nor on the user status button,
+                // and the login form is currently active, then close it.
+                if (!loginFormContainer.contains(event.target) && event.target !== userAuthStatus && loginFormContainer.classList.contains('active')) {
+                    loginFormContainer.classList.remove('active');
+                }
+            }
+
+            // Initialize login status when the DOM is fully loaded
+            updateLoginStatus();
+            // Add a global click listener to close the login form when clicking outside
+            document.addEventListener('click', closeLoginFormOnClickOutside);
+
+            // Handle the simulated login form submission
+            loginForm.addEventListener('submit', (event) => {
+                event.preventDefault(); // Prevent default form submission (page reload)
+
+                const username = usernameInput.value.trim();
+                const password = passwordInput.value.trim();
+
+                if (username === '' || password === '') {
+                    loginMessage.textContent = 'Por favor, rellena ambos campos.';
+                    loginMessage.className = 'login-message error'; // Apply error styling
+                } else {
+                    // Simulate successful login: store username in localStorage
+                    localStorage.setItem(LOCAL_STORAGE_USERNAME_KEY, username);
+                    loginMessage.textContent = `¡Bienvenido, ${username}!`;
+                    loginMessage.className = 'login-message success'; // Apply success styling
+
+                    // Hide the form and update the login status after a short delay
+                    setTimeout(() => {
+                        loginFormContainer.classList.remove('active'); // Hide the form
+                        updateLoginStatus(); // Update button text to display username
+                        // Clear input fields
+                        usernameInput.value = '';
+                        passwordInput.value = '';
+                    }, 1000); // Short delay to allow user to see success message
+                }
+            });
+            // END: Login/Logout elements and functionality
+
+
+            // Toggle for the hamburger menu
+            if (menuToggle && mainNav) {
+                menuToggle.addEventListener('click', () => {
+                    mainNav.classList.toggle('active');
+                    // Close other open dropdowns for a cleaner UI
+                    if (cartDropdown && cartDropdown.classList.contains('active')) {
+                        cartDropdown.classList.remove('active');
+                    }
+                    if (loginFormContainer && loginFormContainer.classList.contains('active')) {
+                        loginFormContainer.classList.remove('active'); // Close login form
+                    }
+                });
+            }
+
+            // Cart logic (assumed to be handled by cart.js but added general listeners here)
+            if (cartIcon && cartDropdown) {
+                cartIcon.addEventListener('click', (event) => {
+                    cartDropdown.classList.toggle('active');
+                    event.stopPropagation(); // Prevent click from bubbling to document and closing immediately
+                    // Close other open dropdowns for a cleaner UI
+                    if (mainNav && mainNav.classList.contains('active')) {
+                        mainNav.classList.remove('active');
+                    }
+                    if (loginFormContainer && loginFormContainer.classList.contains('active')) {
+                        loginFormContainer.classList.remove('active'); // Close login form
+                    }
+                });
+
+                // Close the cart dropdown if a click occurs outside of it
+                document.addEventListener('click', (event) => {
+                    if (cartDropdown && !cartDropdown.contains(event.target) && event.target !== cartIcon) {
+                        cartDropdown.classList.remove('active');
+                    }
+                });
+            }
+        });
+    </script>
 </body>
 </html>

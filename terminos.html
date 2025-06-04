@@ -14,58 +14,65 @@
     <style>
         /* ESTILOS ESPECÍFICOS PARA LA PÁGINA DE TÉRMINOS */
         body {
-            font-family: 'Poppins', sans-serif; /* Fuente principal para el cuerpo */
+            font-family: 'Poppins', sans-serif;
             color: #333;
             background-color: #f7f7f7;
-            line-height: 1.8; /* Mayor interlineado para mejor legibilidad */
+            line-height: 1.8;
+            margin: 0; /* Ensure no default body margin */
+            padding: 0;
         }
 
         main {
             padding: 40px 20px;
-            max-width: 900px; /* Ancho máximo para el contenido principal */
-            margin: 20px auto; /* Centrar y añadir margen superior/inferior */
+            max-width: 900px;
+            margin: 20px auto;
             background-color: #ffffff;
             border-radius: 12px;
-            box-shadow: 0 8px 20px rgba(0, 0, 0, 0.1); 
-            text-align: left; /* Asegurar que el texto se alinee a la izquierda dentro del main */
+            box-shadow: 0 10px 25px rgba(0, 0, 0, 0.15); /* Slightly stronger shadow */
+            text-align: left;
         }
 
         main h1 {
-            font-family: 'Oswald', sans-serif; /* Fuente para encabezados principales */
-            font-size: 2.8em; /* Tamaño de fuente más grande */
-            color: #1a1a1a; /* Negro más oscuro */
+            font-family: 'Oswald', sans-serif;
+            font-size: 3em; /* Larger main heading */
+            color: #1a1a1a;
             margin-bottom: 30px;
             text-align: center;
             position: relative;
             padding-bottom: 15px;
+            text-transform: uppercase; /* Uppercase for headings */
+            letter-spacing: 2px; /* Letter spacing for impact */
         }
 
-        main h1::after { /* Línea decorativa debajo del h1 */
+        main h1::after {
             content: '';
             display: block;
             width: 80px;
             height: 4px;
-            background-color: #32A8FF; /* Azul de tu paleta */
+            background-color: #32A8FF;
             margin: 15px auto 0;
             border-radius: 2px;
         }
 
         main h2 {
-            font-family: 'Oswald', sans-serif; /* Fuente para subencabezados */
-            font-size: 1.8em;
-            color: #32A8FF; /* Azul de tu paleta */
+            font-family: 'Oswald', sans-serif;
+            font-size: 2em; /* Slightly larger sub-heading */
+            color: #32A8FF;
             margin-top: 40px;
             margin-bottom: 20px;
-            padding-left: 10px;
-            border-left: 5px solid #F7F771; /* Borde izquierdo amarillo */
+            padding-left: 15px; /* More padding for the border */
+            border-left: 6px solid #F7F771; /* Thicker, more prominent border */
+            text-transform: uppercase;
+            letter-spacing: 1px;
         }
 
         main article {
             margin-bottom: 30px;
-            padding: 20px;
-            border: 1px solid #e0e0e0;
-            border-radius: 8px;
-            background-color: #fcfcfc;
+            padding: 25px; /* More padding for articles */
+            border: 1px solid #e5e5e5; /* Lighter border */
+            border-radius: 10px; /* Slightly more rounded */
+            background-color: #fdfdfd; /* Lighter background for articles */
+            box-shadow: 0 4px 10px rgba(0, 0, 0, 0.05); /* Subtle shadow for articles */
         }
 
         main article:last-of-type {
@@ -73,28 +80,209 @@
         }
 
         main p {
-            font-size: 1.1em; /* Un poco más grande para facilitar la lectura */
+            font-size: 1.15em; /* Larger font size for better readability */
             margin-bottom: 15px;
-            color: #555;
-            text-align: justify; /* Justificado como lo tenías */
+            color: #444; /* Slightly darker text for readability */
+            text-align: justify;
         }
 
         main p b {
-            color: #333; /* Texto en negrita más oscuro */
-            font-weight: 600; /* Un poco más de grosor para la negrita */
+            color: #222; /* Stronger bold text */
+            font-weight: 700; /* Bolder bold */
         }
 
         /* Estilos específicos para la información de contacto legal */
         .legal-contact-info p {
-            margin-bottom: 8px;
+            margin-bottom: 10px; /* More space for contact info lines */
             font-weight: 500;
+            font-size: 1.1em;
+            color: #555;
         }
         .legal-contact-info b {
             color: #32A8FF;
             font-weight: 700;
         }
+        .legal-contact-info p i { /* Added icon styling for consistency */
+            margin-right: 8px;
+            color: #32A8FF;
+        }
 
-        /* Responsive adjustments */
+        /* --- ESTILOS PARA EL FORMULARIO DE LOGIN DIRECTO EN CABECERA (Copied from Novedades) --- */
+        .login-form-in-header {
+            display: none;
+            position: absolute;
+            top: 100%;
+            right: 0;
+            background-color: #333;
+            border: 1px solid #555;
+            border-radius: 5px;
+            box-shadow: 0 4px 8px rgba(0,0,0,0.2);
+            padding: 15px;
+            width: 250px;
+            z-index: 1500;
+            flex-direction: column;
+            gap: 10px;
+            animation: fadeInDown 0.3s ease-out;
+        }
+
+        @keyframes fadeInDown {
+            from { opacity: 0; transform: translateY(-10px); }
+            to { opacity: 1; transform: translateY(0); }
+        }
+
+        .login-form-in-header.active {
+            display: flex;
+        }
+
+        .login-form-in-header label {
+            color: #eee;
+            font-size: 0.9em;
+            margin-bottom: -5px;
+        }
+
+        .login-form-in-header input[type="text"],
+        .login-form-in-header input[type="password"] {
+            width: calc(100% - 20px);
+            padding: 8px 10px;
+            border: 1px solid #666;
+            border-radius: 4px;
+            background-color: #222;
+            color: #fff;
+            font-size: 0.9em;
+        }
+
+        .login-form-in-header button {
+            background-color: #32A8FF;
+            color: white;
+            padding: 8px 15px;
+            border: none;
+            border-radius: 4px;
+            cursor: pointer;
+            font-size: 0.9em;
+            font-weight: 600;
+            transition: background-color 0.3s ease;
+        }
+
+        .login-form-in-header button:hover {
+            background-color: #287ac6;
+        }
+
+        .login-message {
+            text-align: center;
+            font-size: 0.85em;
+            margin-top: 5px;
+            color: #ffcc00;
+        }
+        .login-message.success { color: #00ff00; }
+        .login-message.error { color: #ff0000; }
+
+        .user-auth-status {
+            color: white;
+            text-decoration: none;
+            font-size: 14px;
+            margin-right: 10px;
+            transition: color 0.3s ease, background-color 0.3s ease;
+            padding: 5px 10px;
+            border-radius: 5px;
+            cursor: pointer;
+            white-space: nowrap;
+        }
+        .user-auth-status:hover {
+            color: #32A8FF;
+            text-decoration: underline;
+        }
+        .user-auth-status.logged-in {
+            background-color: #28a745;
+            font-weight: bold;
+        }
+        .user-auth-status.logged-in:hover {
+            background-color: #218838;
+            text-decoration: none;
+        }
+
+        /* Responsive adjustments (Copied from Novedades) */
+        .menu-toggle {
+            display: none;
+            font-size: 1.5em;
+            color: white;
+            cursor: pointer;
+        }
+
+        @media (max-width: 900px) {
+            .menu-toggle {
+                display: block;
+                order: 1;
+                margin-right: 15px;
+            }
+
+            header nav {
+                display: none;
+                flex-direction: column;
+                position: absolute;
+                top: 100%;
+                left: 0;
+                width: 100%;
+                background-color: #333;
+                box-shadow: 0 8px 16px rgba(0,0,0,0.2);
+                z-index: 1000;
+                padding: 10px 0;
+            }
+
+            header nav.active {
+                display: flex;
+            }
+
+            header nav a {
+                padding: 10px 20px;
+                text-align: center;
+                border-bottom: 1px solid #555;
+            }
+
+            header nav a:last-child {
+                border-bottom: none;
+            }
+
+            header {
+                display: flex;
+                justify-content: space-between;
+                align-items: center;
+                padding: 10px 20px;
+                position: relative;
+            }
+
+            .logo-container {
+                order: 2;
+                flex-grow: 1;
+                text-align: center;
+            }
+
+            .cart {
+                order: 4;
+                position: relative;
+            }
+
+            .cart-dropdown {
+                right: 0;
+                left: auto;
+            }
+
+            .user-auth-status {
+                order: 3;
+                margin-left: 10px;
+                padding: 5px 8px;
+            }
+            .user-auth-status.logged-in {
+                padding: 5px 8px;
+            }
+
+            .login-form-in-header {
+                right: 15px;
+                width: 220px;
+            }
+        }
+        /* End of copied header styles */
+
+        /* Responsive adjustments for Terms page content */
         @media (max-width: 768px) {
             main {
                 padding: 30px 15px;
@@ -107,10 +295,15 @@
 
             main h2 {
                 font-size: 1.5em;
+                padding-left: 10px;
+                border-left: 5px solid #F7F771;
             }
 
             main p {
                 font-size: 1em;
+            }
+            main article {
+                padding: 20px;
             }
         }
 
@@ -125,7 +318,21 @@
 
             main h2 {
                 font-size: 1.3em;
+                padding-left: 8px;
+                border-left: 4px solid #F7F771;
             }
+            main p {
+                font-size: 0.95em;
+            }
+            main article {
+                padding: 15px;
+            }
+        }
+
+        .social-icons img {
+            width: 20px;
+            height: 20px;
+            margin: 0 5px;
         }
     </style>
 </head>
@@ -139,8 +346,7 @@
             <a href="proyecto.html"><img src="fotos/foto.png" alt="Logo DAW SNKRS" class="logo-image"></a>
             <div class="logo-text">DAW SNKRS</div>
         </div>
-        <nav>
-            <a href="proyecto.html">Inicio</a>
+        <nav id="mainNav"> <a href="proyecto.html">Inicio</a>
             <a href="zapatillas.html">Tienda</a>
             <a href="sobre_nosotros.html">Sobre nosotros</a>
             <a href="novedades.html">Novedades</a>
@@ -161,13 +367,27 @@
                 </div>
             </div>
         </div>
+        <a href="#" id="userAuthStatus" class="user-auth-status">Login</a>
+        <div id="loginFormContainer" class="login-form-in-header">
+            <form id="loginForm">
+                <label for="username">Usuario:</label>
+                <input type="text" id="username" name="username" placeholder="Tu usuario" required>
+                <label for="password">Contraseña:</label>
+                <input type="password" id="password" name="password" placeholder="Tu contraseña" required>
+                <button type="submit">Entrar</button>
+                <p id="loginMessage" class="login-message"></p>
+            </form>
+        </div>
+        <div class="menu-toggle" id="menuToggle">
+            <i class="fas fa-bars"></i>
+        </div>
     </header>
 
     <main>
         <h1>Apartado Legal de DAW SNKRS (2025)</h1>
         <article>
             <h2>1. Propiedad Intelectual</h2>
-            <p>Todos los diseños y productos de <b style="color:blue">DAW SNKRS</b> son originales y están protegidos por la Ley de Propiedad Intelectual (<b>Real Decreto Legislativo 1/1996, de 12 de abril</b>).</p>
+            <p>Todos los diseños y productos de <b>DAW SNKRS</b> son originales y están protegidos por la Ley de Propiedad Intelectual (<b>Real Decreto Legislativo 1/1996, de 12 de abril</b>).</p>
             <p>Cualquier uso no autorizado de marcas, logotipos o diseños de terceros está estrictamente prohibido y será perseguido legalmente.</p>
         </article>
 
@@ -185,15 +405,14 @@
 
         <article>
             <h2>4. Responsabilidad</h2>
-            <p><b style="color:blue">DAW SNKRS</b> no se hace responsable de los daños directos o indirectos que puedan surgir del uso de nuestros productos o servicios.</p>
+            <p><b>DAW SNKRS</b> no se hace responsable de los daños directos o indirectos que puedan surgir del uso de nuestros productos o servicios.</p>
             <p>En caso de que se produzcan errores en la información proporcionada, nos comprometemos a corregirlos a la mayor brevedad posible.</p>
         </article>
 
         <article class="legal-contact-info">
             <h2>5. Contacto para Consultas Legales</h2>
-            <p>Para cualquier consulta relacionada con la propiedad intelectual, protección de datos o condiciones de uso, los interesados pueden ponerse en contacto con nuestro departamento legal a través de:</p>
-            <p>Correo: <b>legal@dawsnkrs.com</b></p>
-            <p>Teléfono: <b>+34 123 456 789</b></p>
+            <p><i class="fas fa-envelope"></i> Correo: <b>legal@dawsnkrs.com</b></p>
+            <p><i class="fas fa-phone"></i> Teléfono: <b>+34 123 456 789</b></p>
         </article>
 
         <h1>Política de Privacidad</h1>
@@ -209,7 +428,7 @@
 
         <article>
             <h2>3. ¿Quién recopila y usa sus datos personales?</h2>
-            <p><b style="color:blue">DAW SNKRS</b> actúa como "<b>controlador de datos</b>". También trabajamos con socios que actúan como "<b>encargados del tratamiento</b>".</p>
+            <p><b>DAW SNKRS</b> actúa como "<b>controlador de datos</b>". También trabajamos con socios que actúan como "<b>encargados del tratamiento</b>".</p>
         </article>
 
         <article>
@@ -238,17 +457,17 @@
             </div>
             <div class="footer-section">
                 <h4>Términos legales</h4>
-                <a href="#">Política de privacidad</a>
-                <a href="terminos.html">Términos y condiciones</a>
-                <a href="#">Política de cookies</a>
+                <a href="#" aria-label="Política de privacidad">Política de privacidad</a>
+                <a href="terminos.html" aria-label="Términos y condiciones">Términos y condiciones</a>
+                <a href="#" aria-label="Política de cookies">Política de cookies</a>
             </div>
             <div class="footer-section">
                 <h4>Redes sociales</h4>
                 <div class="social-icons">
-                    <a href="https://www.facebook.com/"><img src="fotos/facebook.png" alt="Facebook"></a>
-                    <a href="https://www.instagram.com/"><img src="fotos/instagram.png" alt="Instagram"></a>
-                    <a href="https://www.twitter.com/"><img src="fotos/twitter.png" alt="Twitter"></a>
-                    <a href="https://www.youtube.com/"><img src="fotos/youtube.png" alt="YouTube"></a>
+                    <a href="https://www.facebook.com/" aria-label="Visita nuestra página de Facebook"><img src="fotos/facebook.png" alt="Facebook"></a>
+                    <a href="https://www.instagram.com/" aria-label="Visita nuestro perfil de Instagram"><img src="fotos/instagram.png" alt="Instagram"></a>
+                    <a href="https://www.twitter.com/" aria-label="Visita nuestro perfil de Twitter"><img src="fotos/twitter.png" alt="Twitter"></a>
+                    <a href="https://www.youtube.com/" aria-label="Visita nuestro canal de YouTube"><img src="fotos/youtube.png" alt="YouTube"></a>
                 </div>
             </div>
         </div>
@@ -257,5 +476,160 @@
         </div>
     </footer>
     <script src="cart.js"></script>
+    <script>
+        document.addEventListener('DOMContentLoaded', () => {
+            const menuToggle = document.getElementById('menuToggle');
+            const mainNav = document.getElementById('mainNav');
+            const cartIcon = document.querySelector('.cart-icon');
+            const cartDropdown = document.getElementById('cartDropdown');
+
+            // START: Login/Logout elements and functionality
+            const userAuthStatus = document.getElementById('userAuthStatus');
+            const loginFormContainer = document.getElementById('loginFormContainer');
+            const loginForm = document.getElementById('loginForm');
+            const usernameInput = document.getElementById('username');
+            const passwordInput = document.getElementById('password');
+            const loginMessage = document.getElementById('loginMessage');
+
+            const LOCAL_STORAGE_USERNAME_KEY = 'loggedInUsername';
+
+            /**
+             * Updates the login status display based on localStorage.
+             * If a username is stored, it displays the username and sets up a logout listener.
+             * Otherwise, it displays "Login" and sets up a login form toggle listener.
+             */
+            function updateLoginStatus() {
+                const storedUsername = localStorage.getItem(LOCAL_STORAGE_USERNAME_KEY);
+                if (storedUsername) {
+                    userAuthStatus.textContent = storedUsername;
+                    userAuthStatus.classList.add('logged-in');
+                    userAuthStatus.removeEventListener('click', toggleLoginForm); // Prevent opening login form if logged in
+                    userAuthStatus.addEventListener('click', logout); // Enable logout functionality
+                } else {
+                    userAuthStatus.textContent = 'Login';
+                    userAuthStatus.classList.remove('logged-in');
+                    userAuthStatus.removeEventListener('click', logout); // Remove logout listener if not logged in
+                    userAuthStatus.addEventListener('click', toggleLoginForm); // Enable login form toggle
+                }
+                userAuthStatus.style.cursor = 'pointer'; // Keep cursor as pointer
+            }
+
+            /**
+             * Toggles the visibility of the login form dropdown.
+             * Closes other open menus (main nav, cart) for better UX.
+             */
+            function toggleLoginForm(event) {
+                event.preventDefault();
+                loginFormContainer.classList.toggle('active'); // Toggle form visibility
+                loginMessage.textContent = ''; // Clear previous messages
+
+                // Close other open dropdowns for a cleaner UI
+                if (mainNav && mainNav.classList.contains('active')) {
+                    mainNav.classList.remove('active');
+                }
+                if (cartDropdown && cartDropdown.classList.contains('active')) {
+                    cartDropdown.classList.remove('active');
+                }
+
+                // If the login form just opened, focus on the username input
+                if (loginFormContainer.classList.contains('active')) {
+                    usernameInput.focus();
+                }
+            }
+
+            /**
+             * Handles user logout.
+             * Removes the stored username from localStorage and updates the UI.
+             */
+            function logout(event) {
+                event.preventDefault();
+                localStorage.removeItem(LOCAL_STORAGE_USERNAME_KEY); // Remove username from localStorage
+                updateLoginStatus(); // Update the UI to reflect logout
+                alert('Sesión cerrada correctamente.');
+                // Optional: window.location.reload(); // Reload page if necessary for full state reset
+            }
+
+            /**
+             * Closes the login form dropdown if a click occurs outside of it.
+             */
+            function closeLoginFormOnClickOutside(event) {
+                // If the click was not inside the login form container, nor on the user status button,
+                // and the login form is currently active, then close it.
+                if (!loginFormContainer.contains(event.target) && event.target !== userAuthStatus && loginFormContainer.classList.contains('active')) {
+                    loginFormContainer.classList.remove('active');
+                }
+            }
+
+            // Initialize login status when the DOM is fully loaded
+            updateLoginStatus();
+            // Add a global click listener to close the login form when clicking outside
+            document.addEventListener('click', closeLoginFormOnClickOutside);
+
+            // Handle the simulated login form submission
+            loginForm.addEventListener('submit', (event) => {
+                event.preventDefault(); // Prevent default form submission (page reload)
+
+                const username = usernameInput.value.trim();
+                const password = passwordInput.value.trim();
+
+                if (username === '' || password === '') {
+                    loginMessage.textContent = 'Por favor, rellena ambos campos.';
+                    loginMessage.className = 'login-message error'; // Apply error styling
+                } else {
+                    // Simulate successful login: store username in localStorage
+                    localStorage.setItem(LOCAL_STORAGE_USERNAME_KEY, username);
+                    loginMessage.textContent = `¡Bienvenido, ${username}!`;
+                    loginMessage.className = 'login-message success'; // Apply success styling
+
+                    // Hide the form and update the login status after a short delay
+                    setTimeout(() => {
+                        loginFormContainer.classList.remove('active'); // Hide the form
+                        updateLoginStatus(); // Update button text to display username
+                        // Clear input fields
+                        usernameInput.value = '';
+                        passwordInput.value = '';
+                    }, 1000); // Short delay to allow user to see success message
+                }
+            });
+            // END: Login/Logout elements and functionality
+
+
+            // Toggle for the hamburger menu
+            if (menuToggle && mainNav) {
+                menuToggle.addEventListener('click', () => {
+                    mainNav.classList.toggle('active');
+                    // Close other open dropdowns for a cleaner UI
+                    if (cartDropdown && cartDropdown.classList.contains('active')) {
+                        cartDropdown.classList.remove('active');
+                    }
+                    if (loginFormContainer && loginFormContainer.classList.contains('active')) {
+                        loginFormContainer.classList.remove('active'); // Close login form
+                    }
+                });
+            }
+
+            // Cart logic (assumed to be handled by cart.js but added general listeners here)
+            if (cartIcon && cartDropdown) {
+                cartIcon.addEventListener('click', (event) => {
+                    cartDropdown.classList.toggle('active');
+                    event.stopPropagation(); // Prevent click from bubbling to document and closing immediately
+                    // Close other open dropdowns for a cleaner UI
+                    if (mainNav && mainNav.classList.contains('active')) {
+                        mainNav.classList.remove('active');
+                    }
+                    if (loginFormContainer && loginFormContainer.classList.contains('active')) {
+                        loginFormContainer.classList.remove('active'); // Close login form
+                    }
+                });
+
+                // Close the cart dropdown if a click occurs outside of it
+                document.addEventListener('click', (event) => {
+                    if (cartDropdown && !cartDropdown.contains(event.target) && event.target !== cartIcon) {
+                        cartDropdown.classList.remove('active');
+                    }
+                });
+            }
+        });
+    </script>
 </body>
 </html>
