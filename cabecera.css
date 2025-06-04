@@ -1,32 +1,31 @@
-/* Reset básico - Asegúrate de que este esté al principio de tu CSS general si no lo tienes ya */
+/* Reset básico */
 * {
     margin: 0;
     padding: 0;
     box-sizing: border-box;
 }
 
-/* Estilos de la Cabecera (Header) */
+/* Header General (Desktop First) */
 header {
     display: flex;
     justify-content: space-between;
     align-items: center;
     background-color: #000;
     padding: 20px;
-    position: relative; /* Importante para posicionar el menú desplegable */
-    flex-wrap: wrap; /* Permite que los elementos se envuelvan si no hay espacio */
+    position: relative; /* Necesario para el posicionamiento del menú desplegable */
+    flex-wrap: wrap; /* Permite que los elementos se envuelvan en pantallas pequeñas */
 }
 
 /* Contenedor del Logo */
 header .logo-container {
     display: flex;
     align-items: center;
-    /* Eliminar margin-right: auto; si queremos que el nav esté siempre centrado por defecto
-       o si queremos que el toggle esté al final */
+    /* margin-right: auto; // Puedes usar esto si quieres empujar el nav y el carrito a la derecha */
 }
 
 header .logo-image {
-    width: 80px; /* Tamaño del logo */
-    height: auto; /* Mantener la proporción */
+    width: 80px; /* Tamaño del logo en desktop */
+    height: auto; /* Mantiene la proporción */
 }
 
 header .logo-text {
@@ -36,12 +35,12 @@ header .logo-text {
     margin-left: 10px;
 }
 
-/* Navegación (Nav) */
+/* Navegación Principal (Desktop) */
 header nav {
-    display: flex;
-    /* flex-grow: 1;  Si quieres que la navegación ocupe todo el espacio central disponible */
-    justify-content: center; /* Centra los enlaces del nav */
-    margin: 0 20px; /* Ajusta el margen para separar del logo y el carrito */
+    display: flex; /* Por defecto, visible y como fila en desktop */
+    flex-grow: 1; /* Permite que la navegación ocupe el espacio central */
+    justify-content: center; /* Centra los enlaces de navegación */
+    margin: 0 20px; /* Margen para separar de logo y carrito */
 }
 
 header nav a {
@@ -58,23 +57,22 @@ header nav a:hover {
     text-decoration: underline;
 }
 
-/* Carrito (Cart) */
+/* Carrito */
 .cart {
     position: relative;
     display: flex;
     align-items: center;
     cursor: pointer;
-    margin-left: auto; /* Empuja el carrito a la derecha */
+    margin-left: 20px; /* Espacio a la izquierda del carrito */
 }
 
 .cart-icon {
-    /* Si estás usando Font Awesome, no necesitas width/height/filter para la imagen.
-       Si usas una imagen PNG/SVG, estas propiedades están bien.
-       Si es Font Awesome, asegúrate de que el color lo defines en CSS:
-       color: #fff; font-size: 30px; */
-    width: 30px;
-    height: 30px;
-    filter: brightness(0) invert(1);
+    /* Asumo que es un icono de Font Awesome, no una imagen. */
+    /* Si es Font Awesome, quita width/height/filter y usa color/font-size */
+    color: #fff; /* Color blanco para el icono de Font Awesome */
+    font-size: 30px; /* Tamaño del icono de Font Awesome */
+    /* Si es una imagen PNG/SVG, entonces tus reglas de width/height/filter son correctas: */
+    /* width: 30px; height: 30px; filter: brightness(0) invert(1); */
 }
 
 .cart-count {
@@ -107,7 +105,7 @@ header nav a:hover {
     color: #333; /* Color de texto dentro del dropdown */
 }
 
-.cart-dropdown.active { /* Clase para mostrar el dropdown con JavaScript */
+.cart-dropdown.active { /* Clase que JavaScript añade para mostrar el dropdown */
     display: block;
 }
 
@@ -119,7 +117,7 @@ header nav a:hover {
     overflow-y: auto; /* Añade scroll si el contenido excede la altura */
 }
 
-.cart-item {
+.cart-item { /* Estilo para cada ítem del carrito */
     display: flex;
     justify-content: space-between;
     align-items: center;
@@ -136,7 +134,7 @@ header nav a:hover {
     font-size: 14px;
 }
 
-.cart-item button {
+.cart-item button { /* Botón de eliminar ítem individual */
     background-color: #FF4500;
     color: #fff;
     border: none;
@@ -151,7 +149,7 @@ header nav a:hover {
     background-color: #e03e00;
 }
 
-.cart-footer { /* Nuevo div para agrupar total y botones */
+.cart-footer { /* Contenedor para el total y botones del carrito */
     padding: 10px;
     border-top: 1px solid #eee;
     text-align: right;
@@ -179,12 +177,12 @@ header nav a:hover {
     background-color: #c82333;
 }
 
-.checkout-btn {
+.checkout-btn { /* Botón para finalizar compra */
     background-color: #32A8FF;
     color: #fff;
     border: none;
     padding: 10px 15px;
-    border-radius: 5px; /* Redondeado en todos los lados */
+    border-radius: 5px;
     cursor: pointer;
     font-size: 14px;
     transition: background-color 0.3s ease;
@@ -194,31 +192,36 @@ header nav a:hover {
     background-color: #287ac6;
 }
 
-/* Botón de hamburguesa para móvil */
+/* Botón de hamburguesa (OCULTO por defecto en Desktop) */
 .menu-toggle {
-    display: none; /* Oculto por defecto en pantallas grandes */
+    display: none; /* Oculto en pantallas grandes */
     font-size: 28px; /* Tamaño del icono */
     color: #fff;
     cursor: pointer;
     margin-left: 15px; /* Espacio a la izquierda del icono */
 }
 
-/* --- Media Queries --- */
+
+/* --- MEDIA QUERIES PARA RESPONSIVE --- */
 
 /* Para pantallas más pequeñas (máximo 900px, por ejemplo, tablets y móviles) */
 @media (max-width: 900px) {
     header {
         padding: 15px; /* Reduce el padding del header */
-        justify-content: space-between; /* Ajusta la alineación */
+        justify-content: space-between; /* Ajusta la alineación de los elementos */
+        /* Asegura que el div de idioma ES|EN no cause problemas de layout */
+        flex-wrap: wrap; /* Asegura que los elementos se envuelvan */
     }
 
     /* Ajuste para el div de idioma (ES | EN) */
-    header > div:first-child { /* Selecciona el primer div dentro del header */
+    /* Este selector asume que el div de idioma es el primer div dentro del header. */
+    /* Si tienes otros elementos o la estructura es diferente, ajusta el selector. */
+    header > div:first-child {
         order: -1; /* Mueve el selector de idioma al principio visualmente */
-        margin: 0; /* Elimina márgenes si los tiene */
-        padding: 5px 0;
         width: 100%; /* Ocupa todo el ancho */
         text-align: right; /* Alinea a la derecha */
+        margin-bottom: 10px; /* Espacio debajo del selector */
+        padding: 0 5px; /* Pequeño padding horizontal */
     }
 
     header .logo-container {
@@ -236,21 +239,30 @@ header nav a:hover {
     }
 
     header nav {
-        display: none; /* Oculta la navegación principal */
+        display: none; /* Oculta la navegación principal por defecto en móvil */
         flex-direction: column; /* Apila los enlaces verticalmente */
-        width: 100%; /* Ocupa todo el ancho */
+        width: 100%; /* Ocupa todo el ancho disponible */
         text-align: center;
-        background-color: #222; /* Un color de fondo para el menú desplegado */
-        position: absolute;
+        background-color: #222; /* Color de fondo para el menú desplegado */
+        position: absolute; /* Para que se posicione respecto al header */
         top: 100%; /* Coloca el menú justo debajo del header */
         left: 0;
         z-index: 999; /* Asegura que esté por encima de otros contenidos */
         padding: 10px 0;
         box-shadow: 0 8px 16px rgba(0,0,0,0.3); /* Sombra para destacarlo */
+
+        /* Animación para el desplegable (opcional, pero queda bien) */
+        transition: transform 0.3s ease-out, opacity 0.3s ease-out;
+        transform: translateY(-10px); /* Inicia ligeramente arriba para la animación */
+        opacity: 0; /* Empieza invisible */
+        pointer-events: none; /* Evita interacciones cuando está oculto */
     }
 
-    header nav.active {
-        display: flex; /* Muestra el menú cuando tiene la clase 'active' */
+    header nav.active { /* Esta clase se añade con JavaScript para mostrar el menú */
+        display: flex; /* Muestra el menú cuando está activo */
+        transform: translateY(0); /* Vuelve a su posición */
+        opacity: 1; /* Se vuelve visible */
+        pointer-events: auto; /* Permite interacciones */
     }
 
     header nav a {
@@ -268,16 +280,17 @@ header nav a:hover {
     }
 
     .menu-toggle {
-        display: block; /* Muestra el icono de hamburguesa */
+        display: block; /* Muestra el icono de hamburguesa en pantallas pequeñas */
     }
 
     .cart-dropdown {
         width: 250px; /* Ancho más pequeño para el dropdown en móviles */
         right: 15px; /* Ajusta la posición para que no se salga de la pantalla */
+        top: 70px; /* Ajuste si el header es más alto con el selector de idioma */
     }
 }
 
-/* Para pantallas muy pequeñas (smartphones pequeños) */
+/* Para pantallas muy pequeñas (smartphones pequeños, si necesitas ajustes adicionales) */
 @media (max-width: 480px) {
     header .logo-text {
         font-size: 18px; /* Ajuste aún más pequeño para el texto del logo */
