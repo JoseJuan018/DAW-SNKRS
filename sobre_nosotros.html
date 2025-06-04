@@ -57,6 +57,7 @@
         }
         .about-image img {
             max-width: 100%;
+            height: auto; /* Asegura que la imagen escale proporcionalmente */
             border-radius: 10px;
             box-shadow: 0 4px 8px rgba(0, 0, 0, 0.2);
         }
@@ -68,7 +69,7 @@
         }
         .team-member {
             text-align: center;
-            width: 250px;
+            width: 250px; /* Ancho fijo para escritorio */
             background-color: #fff;
             border-radius: 10px;
             box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
@@ -80,6 +81,7 @@
             border-radius: 50%;
             box-shadow: 0 4px 8px rgba(0, 0, 0, 0.2);
             margin-bottom: 15px;
+            object-fit: cover; /* Asegura que la imagen de perfil se vea bien */
         }
         .team-member h3 {
             margin: 10px 0 5px;
@@ -90,10 +92,80 @@
             font-size: 1rem;
             color: #555;
         }
-        .social-icons img {
+        /* No necesitas social-icons aquí si ya lo tienes en pie.css */
+        /* .social-icons img {
             width: 30px;
             height: 30px;
             margin: 0 5px;
+        } */
+
+        /* --- Media Queries para Sobre Nosotros --- */
+        @media (max-width: 768px) {
+            .about-banner {
+                font-size: 1.8rem;
+                padding: 40px 15px;
+            }
+            .about-container {
+                padding: 30px 15px;
+            }
+            .about-section h2 {
+                font-size: 1.6rem;
+            }
+            .about-section p {
+                font-size: 1rem;
+            }
+            .team-section {
+                gap: 20px;
+            }
+            .team-member {
+                width: calc(50% - 20px); /* Dos columnas en tablets */
+                max-width: 200px; /* Limita el ancho en caso de pantallas muy anchas */
+            }
+            .team-member img {
+                width: 100px;
+                height: 100px;
+            }
+            .team-member h3 {
+                font-size: 1.2rem;
+            }
+            .team-member p {
+                font-size: 0.9rem;
+            }
+        }
+
+        @media (max-width: 480px) {
+            .about-banner {
+                font-size: 1.5rem;
+                padding: 30px 10px;
+            }
+            .about-container {
+                padding: 20px 10px;
+            }
+            .about-section {
+                margin-bottom: 30px;
+            }
+            .about-section h2 {
+                font-size: 1.4rem;
+            }
+            .team-section {
+                flex-direction: column; /* Una columna en móviles pequeños */
+                align-items: center; /* Centra los miembros del equipo */
+                gap: 15px;
+            }
+            .team-member {
+                width: 100%; /* Ocupa todo el ancho disponible */
+                max-width: 250px; /* O un ancho máximo si no quieres que sea demasiado ancho */
+            }
+            .team-member img {
+                width: 90px;
+                height: 90px;
+            }
+            .team-member h3 {
+                font-size: 1.1rem;
+            }
+            .team-member p {
+                font-size: 0.85rem;
+            }
         }
     </style>
 </head>
@@ -107,8 +179,7 @@
             <a href="proyecto.html"><img src="fotos/foto.png" alt="Logo DAW SNKRS" class="logo-image"></a>
             <div class="logo-text">DAW SNKRS</div>
         </div>
-        <nav>
-            <a href="proyecto.html">Inicio</a>
+        <nav id="mainNav"> <a href="proyecto.html">Inicio</a>
             <a href="zapatillas.html">Tienda</a>
             <a href="sobre_nosotros.html">Sobre nosotros</a>
             <a href="novedades.html">Novedades</a>
@@ -128,6 +199,9 @@
                     <button class="checkout-btn" id="checkoutBtn">Finalizar compra</button>
                 </div>
             </div>
+        </div>
+        <div class="menu-toggle" id="menuToggle">
+            <i class="fas fa-bars"></i>
         </div>
     </header>
 
@@ -188,6 +262,12 @@
                 <p>10:00h - 18:00h (Lunes a Viernes)</p>
             </div>
             <div class="footer-section">
+                <h4>Términos legales</h4>
+                <a href="#">Política de privacidad</a>
+                <a href="terminos.html">Términos y condiciones</a>
+                <a href="#">Política de cookies</a>
+            </div>
+            <div class="footer-section">
                 <h4>Redes sociales</h4>
                 <div class="social-icons">
                     <a href="https://www.facebook.com/"><img src="fotos/facebook.png" alt="Facebook"></a>
@@ -202,5 +282,43 @@
         </div>
     </footer>
     <script src="cart.js"></script>
+    <script>
+        document.addEventListener('DOMContentLoaded', () => {
+            const menuToggle = document.getElementById('menuToggle');
+            const mainNav = document.getElementById('mainNav');
+            const cartIcon = document.querySelector('.cart-icon');
+            const cartDropdown = document.getElementById('cartDropdown');
+
+            // Toggle para el menú hamburguesa
+            if (menuToggle && mainNav) {
+                menuToggle.addEventListener('click', () => {
+                    mainNav.classList.toggle('active');
+                    // Opcional: Cierra el carrito si está abierto al abrir el menú
+                    if (cartDropdown && cartDropdown.classList.contains('active')) {
+                        cartDropdown.classList.remove('active');
+                    }
+                });
+            }
+
+            // Lógica para el carrito (mantener tu lógica existente o usar esta)
+            if (cartIcon && cartDropdown) {
+                cartIcon.addEventListener('click', (event) => {
+                    cartDropdown.classList.toggle('active');
+                    event.stopPropagation(); // Evita que el clic se propague al documento
+                    // Opcional: Cierra el menú hamburguesa si está abierto al abrir el carrito
+                    if (mainNav && mainNav.classList.contains('active')) {
+                        mainNav.classList.remove('active');
+                    }
+                });
+
+                // Cierra el carrito si se hace clic fuera de él
+                document.addEventListener('click', (event) => {
+                    if (cartDropdown && !cartDropdown.contains(event.target) && event.target !== cartIcon) {
+                        cartDropdown.classList.remove('active');
+                    }
+                });
+            }
+        });
+    </script>
 </body>
 </html>
