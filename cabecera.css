@@ -1,21 +1,32 @@
-/* Reset básico */
+/* Reset básico - Asegúrate de que este esté al principio de tu CSS general si no lo tienes ya */
 * {
     margin: 0;
     padding: 0;
     box-sizing: border-box;
 }
 
+/* Estilos de la Cabecera (Header) */
 header {
     display: flex;
     justify-content: space-between;
     align-items: center;
     background-color: #000;
     padding: 20px;
+    position: relative; /* Importante para posicionar el menú desplegable */
+    flex-wrap: wrap; /* Permite que los elementos se envuelvan si no hay espacio */
 }
 
+/* Contenedor del Logo */
 header .logo-container {
     display: flex;
     align-items: center;
+    /* Eliminar margin-right: auto; si queremos que el nav esté siempre centrado por defecto
+       o si queremos que el toggle esté al final */
+}
+
+header .logo-image {
+    width: 80px; /* Tamaño del logo */
+    height: auto; /* Mantener la proporción */
 }
 
 header .logo-text {
@@ -25,8 +36,12 @@ header .logo-text {
     margin-left: 10px;
 }
 
-header .logo-image {
-    width: 80px; /* Ajusté el tamaño a 80px para hacerlo más grande */
+/* Navegación (Nav) */
+header nav {
+    display: flex;
+    /* flex-grow: 1;  Si quieres que la navegación ocupe todo el espacio central disponible */
+    justify-content: center; /* Centra los enlaces del nav */
+    margin: 0 20px; /* Ajusta el margen para separar del logo y el carrito */
 }
 
 header nav a {
@@ -34,58 +49,29 @@ header nav a {
     margin: 0 10px;
     text-decoration: none;
     font-size: 14px;
+    padding: 5px 0; /* Añadir padding para hacer el área de clic más grande */
+    transition: color 0.3s ease, text-decoration 0.3s ease;
 }
 
 header nav a:hover {
-    color: #32A8FF; /* Azul para los enlaces */
+    color: #32A8FF; /* Azul para los enlaces al pasar el ratón */
     text-decoration: underline;
 }
 
-/* Header */
-header {
-    display: flex;
-    justify-content: space-between;
-    align-items: center;
-    background-color: #000;
-    padding: 20px;
-    position: relative;
-}
-
+/* Carrito (Cart) */
 .cart {
     position: relative;
     display: flex;
     align-items: center;
     cursor: pointer;
+    margin-left: auto; /* Empuja el carrito a la derecha */
 }
 
 .cart-icon {
-    width: 30px; /* Tamaño del icono */
-    height: 30px;
-    filter: brightness(0) invert(1); /* Icono blanco */
-}
-
-.cart-count {
-    position: absolute;
-    top: -5px;
-    right: -10px;
-    background-color: #FF4500;
-    color: #fff;
-    font-size: 12px;
-    font-weight: bold;
-    border-radius: 50%;
-    padding: 4px 8px;
-    min-width: 20px;
-    text-align: center;
-    box-shadow: 0 4px 8px rgba(0, 0, 0, 0.2);
-}
-.cart {
-    position: relative;
-    display: flex;
-    align-items: center;
-    cursor: pointer;
-}
-
-.cart-icon {
+    /* Si estás usando Font Awesome, no necesitas width/height/filter para la imagen.
+       Si usas una imagen PNG/SVG, estas propiedades están bien.
+       Si es Font Awesome, asegúrate de que el color lo defines en CSS:
+       color: #fff; font-size: 30px; */
     width: 30px;
     height: 30px;
     filter: brightness(0) invert(1);
@@ -106,9 +92,10 @@ header {
     box-shadow: 0 4px 8px rgba(0, 0, 0, 0.2);
 }
 
+/* Dropdown del Carrito */
 .cart-dropdown {
     position: absolute;
-    top: 40px;
+    top: 60px; /* Ajustado para que caiga debajo del header */
     right: 0;
     background-color: #fff;
     border: 1px solid #ddd;
@@ -116,51 +103,32 @@ header {
     box-shadow: 0 4px 8px rgba(0, 0, 0, 0.2);
     display: none; /* Ocultar por defecto */
     width: 300px;
-    z-index: 10;
+    z-index: 1000; /* Asegura que esté por encima de otros elementos */
+    color: #333; /* Color de texto dentro del dropdown */
+}
+
+.cart-dropdown.active { /* Clase para mostrar el dropdown con JavaScript */
+    display: block;
 }
 
 .cart-dropdown ul {
     list-style: none;
     padding: 10px;
     margin: 0;
-    max-height: 200px;
-    overflow-y: auto;
+    max-height: 200px; /* Limita la altura si hay muchos productos */
+    overflow-y: auto; /* Añade scroll si el contenido excede la altura */
 }
 
-.cart-dropdown li {
-    display: flex;
-    justify-content: space-between;
-    margin-bottom: 10px;
-    font-size: 14px;
-    border-bottom: 1px solid #eee;
-    padding-bottom: 10px;
-}
-
-.cart-total {
-    font-weight: bold;
-    padding: 10px;
-    text-align: center;
-}
-
-.checkout-btn {
-    background-color: #32A8FF;
-    color: #fff;
-    border: none;
-    padding: 10px 15px;
-    width: 100%;
-    border-radius: 0 0 5px 5px;
-    cursor: pointer;
-}
-
-.checkout-btn:hover {
-    background-color: #287ac6;
-}
 .cart-item {
     display: flex;
     justify-content: space-between;
     align-items: center;
     padding: 10px 0;
     border-bottom: 1px solid #ddd;
+}
+
+.cart-item:last-child {
+    border-bottom: none; /* Eliminar borde del último ítem */
 }
 
 .cart-item p {
@@ -181,4 +149,147 @@ header {
 
 .cart-item button:hover {
     background-color: #e03e00;
+}
+
+.cart-footer { /* Nuevo div para agrupar total y botones */
+    padding: 10px;
+    border-top: 1px solid #eee;
+    text-align: right;
+}
+
+.cart-footer p {
+    font-weight: bold;
+    margin-bottom: 10px;
+    color: #333;
+}
+
+.btn-clear-cart { /* Botón para vaciar el carrito */
+    background-color: #dc3545; /* Rojo para "Vaciar" */
+    color: #fff;
+    border: none;
+    padding: 8px 12px;
+    border-radius: 5px;
+    cursor: pointer;
+    font-size: 12px;
+    margin-right: 5px;
+    transition: background-color 0.3s ease;
+}
+
+.btn-clear-cart:hover {
+    background-color: #c82333;
+}
+
+.checkout-btn {
+    background-color: #32A8FF;
+    color: #fff;
+    border: none;
+    padding: 10px 15px;
+    border-radius: 5px; /* Redondeado en todos los lados */
+    cursor: pointer;
+    font-size: 14px;
+    transition: background-color 0.3s ease;
+}
+
+.checkout-btn:hover {
+    background-color: #287ac6;
+}
+
+/* Botón de hamburguesa para móvil */
+.menu-toggle {
+    display: none; /* Oculto por defecto en pantallas grandes */
+    font-size: 28px; /* Tamaño del icono */
+    color: #fff;
+    cursor: pointer;
+    margin-left: 15px; /* Espacio a la izquierda del icono */
+}
+
+/* --- Media Queries --- */
+
+/* Para pantallas más pequeñas (máximo 900px, por ejemplo, tablets y móviles) */
+@media (max-width: 900px) {
+    header {
+        padding: 15px; /* Reduce el padding del header */
+        justify-content: space-between; /* Ajusta la alineación */
+    }
+
+    /* Ajuste para el div de idioma (ES | EN) */
+    header > div:first-child { /* Selecciona el primer div dentro del header */
+        order: -1; /* Mueve el selector de idioma al principio visualmente */
+        margin: 0; /* Elimina márgenes si los tiene */
+        padding: 5px 0;
+        width: 100%; /* Ocupa todo el ancho */
+        text-align: right; /* Alinea a la derecha */
+    }
+
+    header .logo-container {
+        flex-grow: 1; /* Permite que el logo ocupe más espacio */
+        justify-content: flex-start; /* Alinea el logo a la izquierda */
+        margin-left: 0; /* Elimina cualquier margen izquierdo extra */
+    }
+
+    header .logo-image {
+        width: 60px; /* Reduce el tamaño del logo en pantallas más pequeñas */
+    }
+
+    header .logo-text {
+        font-size: 20px; /* Reduce el tamaño del texto del logo */
+    }
+
+    header nav {
+        display: none; /* Oculta la navegación principal */
+        flex-direction: column; /* Apila los enlaces verticalmente */
+        width: 100%; /* Ocupa todo el ancho */
+        text-align: center;
+        background-color: #222; /* Un color de fondo para el menú desplegado */
+        position: absolute;
+        top: 100%; /* Coloca el menú justo debajo del header */
+        left: 0;
+        z-index: 999; /* Asegura que esté por encima de otros contenidos */
+        padding: 10px 0;
+        box-shadow: 0 8px 16px rgba(0,0,0,0.3); /* Sombra para destacarlo */
+    }
+
+    header nav.active {
+        display: flex; /* Muestra el menú cuando tiene la clase 'active' */
+    }
+
+    header nav a {
+        padding: 12px 10px; /* Más padding para los elementos del menú móvil */
+        border-bottom: 1px solid #444; /* Separador entre enlaces */
+        margin: 0; /* Elimina márgenes horizontales */
+    }
+
+    header nav a:last-child {
+        border-bottom: none; /* No hay borde en el último elemento */
+    }
+
+    .cart {
+        margin-left: 15px; /* Ajusta el margen del carrito */
+    }
+
+    .menu-toggle {
+        display: block; /* Muestra el icono de hamburguesa */
+    }
+
+    .cart-dropdown {
+        width: 250px; /* Ancho más pequeño para el dropdown en móviles */
+        right: 15px; /* Ajusta la posición para que no se salga de la pantalla */
+    }
+}
+
+/* Para pantallas muy pequeñas (smartphones pequeños) */
+@media (max-width: 480px) {
+    header .logo-text {
+        font-size: 18px; /* Ajuste aún más pequeño para el texto del logo */
+    }
+
+    .cart-count {
+        font-size: 10px;
+        padding: 3px 6px;
+        min-width: 18px;
+    }
+
+    .cart-dropdown {
+        width: 200px; /* Ancho aún más pequeño para el dropdown */
+    }
 }
