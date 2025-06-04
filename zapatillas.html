@@ -10,278 +10,298 @@
     <link rel="icon" href="fotos/imagen.ico" type="image/x-icon">
     <link href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0-beta3/css/all.min.css" rel="stylesheet">
     <style>
-        /* Estilos generales del cuerpo */
-        body {
-            font-family: Arial, sans-serif;
-            margin: 0;
-            padding: 0;
-            line-height: 1.6;
-            background-color: #f9f9f9;
-        }
+    /* Estilos generales del cuerpo, tomados de novedades.html para consistencia */
+    body {
+        font-family: Arial, sans-serif;
+        margin: 0;
+        padding: 0;
+        line-height: 1.6;
+        background-color: #f9f9f9;
+    }
 
-        /* Estilos específicos para la sección de productos en zapatillas.html */
+    /* Estilos específicos para la sección de productos en zapatillas.html */
+    .catalog {
+        display: grid;
+        grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));
+        gap: 30px;
+        padding: 40px 20px;
+        max-width: 1200px;
+        margin: 0 auto;
+    }
+
+    .product {
+        background-color: #fff;
+        border: 1px solid #ddd;
+        border-radius: 8px;
+        box-shadow: 0 4px 12px rgba(0,0,0,0.08);
+        text-align: center;
+        padding: 20px;
+        transition: transform 0.3s ease;
+    }
+
+    .product:hover {
+        transform: translateY(-5px);
+    }
+
+    .product img {
+        max-width: 100%;
+        height: 200px; /* Altura fija para las imágenes, ajusta si es necesario */
+        object-fit: cover;
+        border-radius: 4px;
+        margin-bottom: 15px;
+    }
+
+    .product h2 {
+        font-size: 1.5em;
+        color: #333;
+        margin-bottom: 10px;
+    }
+
+    .product p {
+        font-size: 1.2em;
+        color: #666;
+        margin-bottom: 20px;
+        font-weight: bold;
+    }
+
+    .product .btn {
+        background-color: #32A8FF;
+        color: #fff;
+        padding: 10px 20px;
+        border: none;
+        border-radius: 5px;
+        font-size: 1em;
+        cursor: pointer;
+        transition: background-color 0.3s ease;
+    }
+
+    .product .btn:hover {
+        background-color: #287ac6;
+    }
+
+    /* Responsive adjustments para el catálogo de productos */
+    @media (max-width: 768px) {
         .catalog {
-            display: grid;
-            grid-template-columns: repeat(auto-fit, minmax(280px, 1fr)); /* Columnas responsivas */
-            gap: 30px; /* Espacio entre productos */
-            padding: 40px 20px; /* Padding alrededor del catálogo */
-            max-width: 1200px;
-            margin: 0 auto; /* Centrar el catálogo */
-        }
-
-        .product {
-            background-color: #fff;
-            border: 1px solid #ddd;
-            border-radius: 8px;
-            box-shadow: 0 4px 12px rgba(0,0,0,0.08);
-            text-align: center;
-            padding: 20px;
-            transition: transform 0.3s ease;
-        }
-
-        .product:hover {
-            transform: translateY(-5px);
+            grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
+            gap: 20px;
+            padding: 30px 15px;
         }
 
         .product img {
-            max-width: 100%;
-            height: 200px; /* Altura fija para las imágenes, ajusta si es necesario */
-            object-fit: cover; /* Cubrir el espacio sin distorsionar */
-            border-radius: 4px;
+            height: 180px;
+        }
+    }
+
+    @media (max-width: 480px) {
+        .catalog {
+            grid-template-columns: 1fr; /* Una sola columna en móvil */
+            padding: 15px 10px; /* Reducido el padding para más espacio útil */
+            gap: 15px; /* Espacio reducido entre productos */
+        }
+
+        .product {
+            padding: 15px; /* Padding interno del producto más pequeño */
+            border-radius: 6px; /* Bordes ligeramente más suaves */
+            box-shadow: 0 2px 6px rgba(0,0,0,0.08); /* Sombra más sutil */
+        }
+
+        .product img {
+            height: 150px; /* Altura de imagen más adecuada para móvil */
+            margin-bottom: 10px; /* Espacio reducido */
+        }
+        .product h2 {
+            font-size: 1.3em; /* Tamaño de título más pequeño */
+            margin-bottom: 8px;
+        }
+        .product p {
+            font-size: 1em; /* Tamaño de precio más pequeño */
             margin-bottom: 15px;
         }
-
-        .product h2 {
-            font-size: 1.5em;
-            color: #333;
-            margin-bottom: 10px;
-        }
-
-        .product p {
-            font-size: 1.2em;
-            color: #666;
-            margin-bottom: 20px;
-            font-weight: bold;
-        }
-
         .product .btn {
-            background-color: #32A8FF;
-            color: #fff;
-            padding: 10px 20px;
-            border: none;
-            border-radius: 5px;
-            font-size: 1em;
-            cursor: pointer;
-            transition: background-color 0.3s ease;
+            padding: 10px 18px; /* Botón ligeramente más grande y fácil de tocar */
+            font-size: 0.95em;
         }
+    }
 
-        .product .btn:hover {
-            background-color: #287ac6;
-        }
+    /* --- ESTILOS PARA EL FORMULARIO DE LOGIN DIRECTO EN CABECERA (COPIADOS DE NOVEDADES.HTML) --- */
+    .login-form-in-header {
+        display: none; /* Oculto por defecto */
+        position: absolute; /* Posiciona debajo del botón Login/Usuario */
+        top: 100%; /* Justo debajo del header */
+        right: 0;
+        background-color: #333; /* Color de fondo */
+        border: 1px solid #555;
+        border-radius: 5px;
+        box-shadow: 0 4px 8px rgba(0,0,0,0.2);
+        padding: 15px;
+        width: 250px; /* Ancho del formulario */
+        z-index: 1500; /* Asegura que esté por encima de otros elementos */
+        flex-direction: column; /* Organiza los elementos verticalmente */
+        gap: 10px; /* Espacio entre los elementos del formulario */
+        animation: fadeInDown 0.3s ease-out;
+    }
 
-        /* Responsive adjustments para el catálogo de productos */
-        @media (max-width: 768px) {
-            .catalog {
-                grid-template-columns: repeat(auto-fit, minmax(250px, 1fr)); /* Más pequeñas en tablet */
-                gap: 20px;
-                padding: 30px 15px;
-            }
+    @keyframes fadeInDown {
+        from { opacity: 0; transform: translateY(-10px); }
+        to { opacity: 1; transform: translateY(0); }
+    }
 
-            .product img {
-                height: 180px;
-            }
-        }
+    .login-form-in-header.active {
+        display: flex; /* Muestra el formulario cuando está activo */
+    }
 
-        @media (max-width: 480px) {
-            .catalog {
-                grid-template-columns: 1fr; /* Una sola columna en móvil */
-                padding: 20px 10px;
-            }
+    .login-form-in-header label {
+        color: #eee;
+        font-size: 0.9em;
+        margin-bottom: -5px; /* Ajuste visual */
+    }
 
-            .product img {
-                height: 160px;
-            }
-        }
+    .login-form-in-header input[type="text"],
+    .login-form-in-header input[type="password"] {
+        width: calc(100% - 20px); /* Ancho completo menos padding */
+        padding: 8px 10px;
+        border: 1px solid #666;
+        border-radius: 4px;
+        background-color: #222;
+        color: #fff;
+        font-size: 0.9em;
+    }
 
-        /* --- ESTILOS PARA EL FORMULARIO DE LOGIN DIRECTO EN CABECERA (COPIADOS DE NOVEDADES.HTML) --- */
-        .login-form-in-header {
-            display: none; /* Oculto por defecto */
-            position: absolute; /* Posiciona debajo del botón Login/Usuario */
-            top: 100%; /* Justo debajo del header */
-            right: 0;
-            background-color: #333; /* Color de fondo */
-            border: 1px solid #555;
-            border-radius: 5px;
-            box-shadow: 0 4px 8px rgba(0,0,0,0.2);
-            padding: 15px;
-            width: 250px; /* Ancho del formulario */
-            z-index: 1500; /* Asegura que esté por encima de otros elementos */
-            flex-direction: column; /* Organiza los elementos verticalmente */
-            gap: 10px; /* Espacio entre los elementos del formulario */
-            animation: fadeInDown 0.3s ease-out;
-        }
+    .login-form-in-header button {
+        background-color: #32A8FF;
+        color: white;
+        padding: 8px 15px;
+        border: none;
+        border-radius: 4px;
+        cursor: pointer;
+        font-size: 0.9em;
+        font-weight: 600;
+        transition: background-color 0.3s ease;
+    }
 
-        @keyframes fadeInDown {
-            from { opacity: 0; transform: translateY(-10px); }
-            to { opacity: 1; transform: translateY(0); }
-        }
+    .login-form-in-header button:hover {
+        background-color: #287ac6;
+    }
 
-        .login-form-in-header.active {
-            display: flex; /* Muestra el formulario cuando está activo */
-        }
+    .login-message {
+        text-align: center;
+        font-size: 0.85em;
+        margin-top: 5px;
+        color: #ffcc00; /* Color de advertencia */
+    }
+    .login-message.success { color: #00ff00; } /* Verde para éxito */
+    .login-message.error { color: #ff0000; } /* Rojo para error */
 
-        .login-form-in-header label {
-            color: #eee;
-            font-size: 0.9em;
-            margin-bottom: -5px; /* Ajuste visual */
-        }
+    /* Estilos para el enlace/botón de Login/Usuario */
+    .user-auth-status {
+        color: white;
+        text-decoration: none;
+        font-size: 14px;
+        margin-right: 10px; /* Ajusta el margen si lo necesitas */
+        transition: color 0.3s ease, background-color 0.3s ease;
+        padding: 5px 10px; /* Añadir padding para que parezca botón */
+        border-radius: 5px;
+        cursor: pointer;
+        white-space: nowrap; /* Evita que el nombre de usuario se rompa */
+    }
+    .user-auth-status:hover {
+        color: #32A8FF; /* Color al pasar el ratón */
+        text-decoration: underline;
+    }
+    /* Para cuando es el nombre de usuario */
+    .user-auth-status.logged-in {
+        background-color: #28a745; /* Fondo verde cuando está logueado */
+        font-weight: bold;
+    }
+    .user-auth-status.logged-in:hover {
+        background-color: #218838;
+        text-decoration: none;
+    }
 
-        .login-form-in-header input[type="text"],
-        .login-form-in-header input[type="password"] {
-            width: calc(100% - 20px); /* Ancho completo menos padding */
-            padding: 8px 10px;
-            border: 1px solid #666;
-            border-radius: 4px;
-            background-color: #222;
-            color: #fff;
-            font-size: 0.9em;
-        }
-
-        .login-form-in-header button {
-            background-color: #32A8FF;
-            color: white;
-            padding: 8px 15px;
-            border: none;
-            border-radius: 4px;
-            cursor: pointer;
-            font-size: 0.9em;
-            font-weight: 600;
-            transition: background-color 0.3s ease;
-        }
-
-        .login-form-in-header button:hover {
-            background-color: #287ac6;
-        }
-
-        .login-message {
-            text-align: center;
-            font-size: 0.85em;
-            margin-top: 5px;
-            color: #ffcc00; /* Color de advertencia */
-        }
-        .login-message.success { color: #00ff00; } /* Verde para éxito */
-        .login-message.error { color: #ff0000; } /* Rojo para error */
-
-        /* Estilos para el enlace/botón de Login/Usuario */
+    /* Ajustes responsive para el enlace de login/usuario */
+    @media (max-width: 900px) {
         .user-auth-status {
-            color: white;
-            text-decoration: none;
-            font-size: 14px;
-            margin-right: 10px; /* Ajusta el margen si lo necesitas */
-            transition: color 0.3s ease, background-color 0.3s ease;
-            padding: 5px 10px; /* Añadir padding para que parezca botón */
-            border-radius: 5px;
-            cursor: pointer;
-            white-space: nowrap; /* Evita que el nombre de usuario se rompa */
+            order: 3; /* Asegura que vaya después del carrito y el menú toggle */
+            margin-left: 10px; /* Ajusta el margen en móvil */
+            padding: 5px 8px; /* Reduce padding */
         }
-        .user-auth-status:hover {
-            color: #32A8FF; /* Color al pasar el ratón */
-            text-decoration: underline;
-        }
-        /* Para cuando es el nombre de usuario */
         .user-auth-status.logged-in {
-            background-color: #28a745; /* Fondo verde cuando está logueado */
-            font-weight: bold;
-        }
-        .user-auth-status.logged-in:hover {
-            background-color: #218838;
-            text-decoration: none;
+            padding: 5px 8px; /* Asegura que el padding sea consistente */
         }
 
-        /* Ajustes responsive para el enlace de login/usuario */
-        @media (max-width: 900px) {
-            .user-auth-status {
-                order: 3; /* Asegura que vaya después del carrito y el menú toggle */
-                margin-left: 10px; /* Ajusta el margen en móvil */
-                padding: 5px 8px; /* Reduce padding */
-            }
-            .user-auth-status.logged-in {
-                padding: 5px 8px; /* Asegura que el padding sea consistente */
-            }
-
-            .login-form-in-header {
-                right: 15px; /* Ajusta para que no se salga de la pantalla en móviles */
-                width: 220px; /* Ancho más pequeño en móvil */
-            }
+        .login-form-in-header {
+            right: 15px; /* Ajusta para que no se salga de la pantalla en móviles */
+            width: 220px; /* Ancho más pequeño en móvil */
         }
-        /* Media query for menu toggle (copiado de novedades.html) */
+    }
+    /* Media query for menu toggle (copiado de novedades.html) */
+    .menu-toggle {
+        display: none; /* Oculto por defecto para escritorio */
+        font-size: 1.5em;
+        color: white;
+        cursor: pointer;
+    }
+
+    @media (max-width: 900px) {
         .menu-toggle {
-            display: none; /* Oculto por defecto para escritorio */
-            font-size: 1.5em;
-            color: white;
-            cursor: pointer;
+            display: block; /* Muestra en pantallas más pequeñas */
+            order: 1; /* Posiciona primero en el contenedor flex */
+            margin-right: 15px;
         }
 
-        @media (max-width: 900px) {
-            .menu-toggle {
-                display: block; /* Muestra en pantallas más pequeñas */
-                order: 1; /* Posiciona primero en el contenedor flex */
-                margin-right: 15px;
-            }
-
-            header nav {
-                display: none; /* Oculta la navegación principal por defecto en pantallas pequeñas */
-                flex-direction: column;
-                position: absolute;
-                top: 100%; /* Posiciona debajo del header */
-                left: 0;
-                width: 100%;
-                background-color: #333; /* Color de fondo para el menú desplegable */
-                box-shadow: 0 8px 16px rgba(0,0,0,0.2);
-                z-index: 1000;
-                padding: 10px 0;
-            }
-
-            header nav.active {
-                display: flex; /* Muestra cuando está activo */
-            }
-
-            header nav a {
-                padding: 10px 20px;
-                text-align: center;
-                border-bottom: 1px solid #555;
-            }
-
-            header nav a:last-child {
-                border-bottom: none;
-            }
-
-            /* Ajusta el diseño del header para móvil */
-            header {
-                display: flex;
-                justify-content: space-between;
-                align-items: center;
-                padding: 10px 20px;
-                position: relative; /* Necesario para el posicionamiento absoluto del nav y el formulario de login */
-            }
-
-            .logo-container {
-                order: 2; /* Posiciona el logo en el medio */
-                flex-grow: 1; /* Permite que el logo ocupe el espacio disponible */
-                text-align: center;
-            }
-
-            .cart {
-                order: 4; /* Posiciona el carrito al final */
-                position: relative;
-            }
-
-            .cart-dropdown {
-                right: 0; /* Ajusta la posición del desplegable para móvil */
-                left: auto;
-            }
+        header nav {
+            display: none; /* Oculta la navegación principal por defecto en pantallas pequeñas */
+            flex-direction: column;
+            position: absolute;
+            top: 100%; /* Posiciona debajo del header */
+            left: 0;
+            width: 100%;
+            background-color: #333; /* Color de fondo para el menú desplegable */
+            box-shadow: 0 8px 16px rgba(0,0,0,0.2);
+            z-index: 1000;
+            padding: 10px 0;
         }
-    </style>
+
+        header nav.active {
+            display: flex; /* Muestra cuando está activo */
+        }
+
+        header nav a {
+            padding: 10px 20px;
+            text-align: center;
+            border-bottom: 1px solid #555;
+        }
+
+        header nav a:last-child {
+            border-bottom: none;
+        }
+
+        /* Ajusta el diseño del header para móvil */
+        header {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            padding: 10px 20px;
+            position: relative; /* Necesario para el posicionamiento absoluto del nav y el formulario de login */
+        }
+
+        .logo-container {
+            order: 2; /* Posiciona el logo en el medio */
+            flex-grow: 1; /* Permite que el logo ocupe el espacio disponible */
+            text-align: center;
+        }
+
+        .cart {
+            order: 4; /* Posiciona el carrito al final */
+            position: relative;
+        }
+
+        .cart-dropdown {
+            right: 0; /* Ajusta la posición del desplegable para móvil */
+            left: auto;
+        }
+    }
+</style>
 </head>
 <body>
     <header>
