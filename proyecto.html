@@ -124,8 +124,7 @@
             <a href="proyecto.html"><img src="fotos/foto.png" alt="Logo DAW SNKRS" class="logo-image"></a>
             <div class="logo-text">DAW SNKRS</div>
         </div>
-        <nav>
-            <a href="proyecto.html">Inicio</a>
+        <nav id="mainNav"> <a href="proyecto.html">Inicio</a>
             <a href="zapatillas.html">Tienda</a>
             <a href="sobre_nosotros.html">Sobre nosotros</a>
             <a href="novedades.html">Novedades</a>
@@ -145,6 +144,9 @@
                     <button class="checkout-btn" id="checkoutBtn">Finalizar compra</button>
                 </div>
             </div>
+        </div>
+        <div class="menu-toggle" id="menuToggle">
+            <i class="fas fa-bars"></i>
         </div>
     </header>
     <main>
@@ -190,5 +192,41 @@
             </div>
         </footer>
         <script src="cart.js"></script>
+        <script>
+            document.addEventListener('DOMContentLoaded', () => {
+                const menuToggle = document.getElementById('menuToggle');
+                const mainNav = document.getElementById('mainNav');
+                const cartIcon = document.querySelector('.cart-icon');
+                const cartDropdown = document.getElementById('cartDropdown');
+
+                // Toggle para el menú hamburguesa
+                if (menuToggle && mainNav) {
+                    menuToggle.addEventListener('click', () => {
+                        mainNav.classList.toggle('active');
+                        // Opcional: Cierra el carrito si está abierto al abrir el menú
+                        if (cartDropdown && cartDropdown.classList.contains('active')) {
+                            cartDropdown.classList.remove('active');
+                        }
+                    });
+                }
+
+                // Lógica para el carrito (mantener tu lógica existente o usar esta)
+                if (cartIcon && cartDropdown) {
+                    cartIcon.addEventListener('click', (event) => {
+                        cartDropdown.classList.toggle('active');
+                        event.stopPropagation();
+                        if (mainNav && mainNav.classList.contains('active')) {
+                            mainNav.classList.remove('active');
+                        }
+                    });
+
+                    document.addEventListener('click', (event) => {
+                        if (cartDropdown && !cartDropdown.contains(event.target) && event.target !== cartIcon) {
+                            cartDropdown.classList.remove('active');
+                        }
+                    });
+                }
+            });
+        </script>
 </body>
 </html>
