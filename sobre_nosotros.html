@@ -9,14 +9,17 @@
     <link rel="icon" href="fotos/imagen.ico" type="image/x-icon">
     <link href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0-beta3/css/all.min.css" rel="stylesheet">
     <style>
+        /* Estilos generales del cuerpo, tomados de novedades.html para consistencia */
         body {
-            font-family: 'Arial', sans-serif;
+            font-family: Arial, sans-serif; /* Cambiado a Arial para consistencia */
             margin: 0;
             padding: 0;
             line-height: 1.6;
             background-color: #f9f9f9;
             color: #333;
         }
+
+        /* Estilos específicos para la sección "Sobre Nosotros" */
         .about-banner {
             background: linear-gradient(to right, #ff416c, #ff4b2b);
             color: white;
@@ -92,14 +95,8 @@
             font-size: 1rem;
             color: #555;
         }
-        /* No necesitas social-icons aquí si ya lo tienes en pie.css */
-        /* .social-icons img {
-            width: 30px;
-            height: 30px;
-            margin: 0 5px;
-        } */
 
-        /* --- Media Queries para Sobre Nosotros --- */
+        /* --- Media Queries para Sobre Nosotros (ajustados) --- */
         @media (max-width: 768px) {
             .about-banner {
                 font-size: 1.8rem;
@@ -168,7 +165,7 @@
             }
         }
 
-        /* --- ESTILOS PARA EL FORMULARIO DE LOGIN DIRECTO EN CABECERA (COPIADOS DE PROYECTO.HTML) --- */
+        /* --- ESTILOS PARA EL FORMULARIO DE LOGIN DIRECTO EN CABECERA (COPIADOS DE NOVEDADES.HTML) --- */
         .login-form-in-header {
             display: none; /* Oculto por defecto */
             position: absolute; /* Posiciona debajo del botón Login/Usuario */
@@ -277,6 +274,74 @@
             .login-form-in-header {
                 right: 15px; /* Ajusta para que no se salga de la pantalla en móviles */
                 width: 220px; /* Ancho más pequeño en móvil */
+            }
+        }
+
+        /* Media query for menu toggle (copiado de novedades.html) */
+        .menu-toggle {
+            display: none; /* Oculto por defecto para escritorio */
+            font-size: 1.5em;
+            color: white;
+            cursor: pointer;
+        }
+
+        @media (max-width: 900px) {
+            .menu-toggle {
+                display: block; /* Muestra en pantallas más pequeñas */
+                order: 1; /* Posiciona primero en el contenedor flex */
+                margin-right: 15px;
+            }
+
+            header nav {
+                display: none; /* Oculta la navegación principal por defecto en pantallas pequeñas */
+                flex-direction: column;
+                position: absolute;
+                top: 100%; /* Posiciona debajo del header */
+                left: 0;
+                width: 100%;
+                background-color: #333; /* Color de fondo para el menú desplegable */
+                box-shadow: 0 8px 16px rgba(0,0,0,0.2);
+                z-index: 1000;
+                padding: 10px 0;
+            }
+
+            header nav.active {
+                display: flex; /* Muestra cuando está activo */
+            }
+
+            header nav a {
+                padding: 10px 20px;
+                text-align: center;
+                border-bottom: 1px solid #555;
+            }
+
+            header nav a:last-child {
+                border-bottom: none;
+            }
+
+            /* Ajusta el diseño del header para móvil */
+            header {
+                display: flex;
+                justify-content: space-between;
+                align-items: center;
+                padding: 10px 20px;
+                position: relative; /* Necesario para el posicionamiento absoluto del nav y el formulario de login */
+            }
+
+            .logo-container {
+                order: 2; /* Posiciona el logo en el medio */
+                flex-grow: 1; /* Permite que el logo ocupe el espacio disponible */
+                text-align: center;
+            }
+
+            .cart {
+                order: 4; /* Posiciona el carrito al final */
+                position: relative;
+            }
+
+            .cart-dropdown {
+                right: 0; /* Ajusta la posición del desplegable para móvil */
+                left: auto;
             }
         }
     </style>
@@ -511,7 +576,7 @@
                 });
             }
 
-            // Lógica para el carrito (mantener tu lógica existente o usar esta)
+            // Lógica para el carrito
             if (cartIcon && cartDropdown) {
                 cartIcon.addEventListener('click', (event) => {
                     cartDropdown.classList.toggle('active');
